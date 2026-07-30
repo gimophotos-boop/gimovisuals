@@ -1,26 +1,175 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root{
+  --background:#000;
+  --foreground:#fff;
+  --red:#dc2626;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html{
+  background:#000;
+}
+
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+  font-family:Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+::selection{
+  background:#dc2626;
+  color:#fff;
+}
+
+section{
+  position:relative;
+}
+
+img{
+  transition:.7s ease;
+}
+
+img:hover{
+  transform:scale(1.04);
+}
+
+video{
+  transition:.7s ease;
+}
+
+button,
+a{
+  transition:.35s ease;
+}
+
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-track{
+  background:#050505;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#dc2626;
+  border-radius:50px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:#ef4444;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(60px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.fade-up{
+  animation:fadeUp .9s ease forwards;
+}
+
+@keyframes float{
+
+  0%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-10px);
+  }
+
+  100%{
+    transform:translateY(0);
+  }
+
+}
+
+.float{
+  animation:float 4s ease-in-out infinite;
+}
+
+.glow{
+  box-shadow:
+  0 0 30px rgba(220,38,38,.35),
+  0 0 60px rgba(220,38,38,.15);
+}
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-track{
+  background:#000;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#dc2626;
+  border-radius:100px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:#ef4444;
+}
+
+/* SCROLL SUAVE */
+
+html{
+  scroll-behavior:smooth;
+}
+
+/* ANIMACIONES */
+
+@keyframes floating{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-12px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+.float{
+  animation:floating 5s ease-in-out infinite;
+}
+
+/* EFECTO CRISTAL */
+
+.glass{
+  background:rgba(255,255,255,.03);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+/* BRILLO */
+
+.red-glow{
+  box-shadow:
+  0 0 40px rgba(220,38,38,.18),
+  0 0 100px rgba(220,38,38,.12);
 }

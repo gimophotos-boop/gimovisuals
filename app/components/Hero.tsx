@@ -69,7 +69,7 @@ export default function Hero() {
               className="mt-8 text-xl text-gray-300 leading-8 max-w-2xl"
             >
               Fotografía, vídeo y dron para empresas, inmobiliarias,
-              automoción, eventos y marcas que quieren destacar.
+              automoción, deporte, bodas y marcas que quieren destacar.
             </motion.p>
 
             <motion.div
@@ -79,10 +79,10 @@ export default function Hero() {
               className="mt-12 flex flex-wrap gap-5"
             >
               <a
-                href="#portfolio"
+                href="#services"
                 className="bg-red-600 hover:bg-red-700 transition px-8 py-4 rounded-full font-semibold"
               >
-                Ver trabajos
+                Ver servicios
               </a>
 
               <a
@@ -91,6 +91,7 @@ export default function Hero() {
               >
                 Solicitar presupuesto
               </a>
+
             </motion.div>
 
           </motion.div>

@@ -3,14 +3,16 @@ export default function Hero() {
     <section className="relative h-screen overflow-hidden">
 
       <video
+        key="/assets/videos/automocion.mp4"
         autoPlay
         muted
         loop
         playsInline
+        preload="auto"
         className="absolute inset-0 h-full w-full object-cover"
       >
         <source
-          src="/assets/videos/automocion/portada.mp4"
+          src="/assets/videos/automocion.mp4"
           type="video/mp4"
         />
       </video>

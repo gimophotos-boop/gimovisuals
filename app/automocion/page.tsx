@@ -1,3 +1,5 @@
+"use client";
+
 import Hero from "./components/Hero";
 import Servicios from "./components/Servicios";
 import GaleriaFotos from "./components/GaleriaFotos";

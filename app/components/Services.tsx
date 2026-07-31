@@ -7,7 +7,7 @@ const services = [
   {
     title: "Automoción",
     text: "Fotografía y vídeo profesional para concesionarios, compraventas y particulares.",
-    image: "/assets/images/covers/automocion.jpg",
+    video: "/assets/videos/automocion.mp4",
     link: "/automocion",
   },
   {
@@ -79,19 +79,34 @@ export default function Services() {
                 duration: 0.7,
                 delay: index * 0.1,
               }}
-              whileHover={{
-                y: -10,
-              }}
+              whileHover={{ y: -10 }}
               className="overflow-hidden rounded-[30px] border border-zinc-800 bg-zinc-950"
             >
 
               <div className="aspect-[16/10] overflow-hidden">
 
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="h-full w-full object-cover transition duration-500 hover:scale-110"
-                />
+                {service.video ? (
+
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="h-full w-full object-cover transition duration-500 hover:scale-110"
+                  >
+                    <source src={service.video} type="video/mp4" />
+                  </video>
+
+                ) : (
+
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="h-full w-full object-cover transition duration-500 hover:scale-110"
+                  />
+
+                )}
 
               </div>
 

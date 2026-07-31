@@ -6,7 +6,6 @@ import Stats from "./components/Stats";
 import Divider from "./components/Divider";
 import WhyUs from "./components/WhyUs";
 import Services from "./components/Services";
-import Portfolio from "./components/Portfolio";
 import Videos from "./components/Videos";
 import Clients from "./components/Clients";
 import About from "./components/About";
@@ -39,10 +38,6 @@ export default function Home() {
         <Divider />
 
         <Services />
-
-        <Divider />
-
-        <Portfolio />
 
         <Divider />
 

@@ -16,16 +16,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-const links = [
-  { name: "Inicio", href: "#" },
-  { name: "Automoción", href: "/automocion" },
-  { name: "Inmobiliarias", href: "/inmobiliarias" },
-  { name: "Bodas", href: "/bodas" },
-  { name: "Retratos", href: "/retratos" },
-  { name: "Deporte", href: "/deporte" },
-  { name: "Negocios", href: "/negocios" },
-  { name: "Contacto", href: "#contact" },
-];
+  const links = [
+    { name: "Inicio", href: "/" },
+    { name: "Automoción", href: "/automocion" },
+    { name: "Inmobiliarias", href: "/inmobiliarias" },
+    { name: "Empresas", href: "/empresas" },
+    { name: "Deporte", href: "/deporte" },
+    { name: "Bodas", href: "/bodas" },
+    { name: "Retratos", href: "/retratos" },
+    { name: "Contacto", href: "/#contacto" },
+  ];
 
   return (
     <header
@@ -37,31 +37,29 @@ const links = [
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-5">
 
-        <a href="#" className="group">
+        <a href="/">
           <img
             src="/assets/logo/logo.png"
             alt="GIMOVISUALS"
-            className="h-14 w-auto transition-all duration-500 group-hover:scale-110"
+            className="h-14 w-auto"
           />
         </a>
 
         <nav className="hidden lg:flex items-center gap-10">
 
           {links.map((link) => (
-
             <a
               key={link.name}
               href={link.href}
-              className="relative text-gray-300 hover:text-white transition duration-300 after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-red-600 after:transition-all after:duration-300 hover:after:w-full"
+              className="relative text-gray-300 hover:text-white transition after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-red-600 after:transition-all hover:after:w-full"
             >
               {link.name}
             </a>
-
           ))}
 
           <a
-            href="#contact"
-            className="rounded-full bg-red-600 px-8 py-4 font-bold text-white transition-all duration-300 hover:bg-red-700 hover:scale-105 hover:shadow-[0_0_35px_rgba(220,38,38,.5)]"
+            href="/#contacto"
+            className="rounded-full bg-red-600 px-8 py-4 font-bold text-white hover:bg-red-700 transition"
           >
             Solicitar presupuesto
           </a>
@@ -79,15 +77,14 @@ const links = [
 
       <div
         className={`lg:hidden overflow-hidden transition-all duration-500 ${
-          open ? "max-h-96" : "max-h-0"
+          open ? "max-h-[600px]" : "max-h-0"
         }`}
       >
-        <div className="bg-black/95 backdrop-blur-2xl border-t border-white/10">
+        <div className="bg-black border-t border-white/10">
 
           <div className="flex flex-col gap-6 p-8">
 
             {links.map((link) => (
-
               <a
                 key={link.name}
                 href={link.href}
@@ -96,11 +93,10 @@ const links = [
               >
                 {link.name}
               </a>
-
             ))}
 
             <a
-              href="#contact"
+              href="/#contacto"
               onClick={() => setOpen(false)}
               className="rounded-full bg-red-600 py-4 text-center font-bold text-white hover:bg-red-700 transition"
             >

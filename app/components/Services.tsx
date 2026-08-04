@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
+import ServiceCard from "./ServiceCard";
 
 const services = [
   {
@@ -63,69 +62,15 @@ export default function Services() {
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
 
-          {services.map((service, index) => (
-
-            <motion.div
+          {services.map((service) => (
+            <ServiceCard
               key={service.title}
-              initial={{ opacity: 0, y: 70 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.7,
-                delay: index * 0.1,
-              }}
-              whileHover={{ y: -10 }}
-              className="overflow-hidden rounded-[30px] border border-zinc-800 bg-zinc-950"
-            >
-
-              <div className="aspect-[16/10] overflow-hidden bg-black">
-
-                {service.video ? (
-
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    className="w-full h-full object-cover transition duration-500 hover:scale-105"
-                  >
-                    <source src={service.video} type="video/mp4" />
-                  </video>
-
-                ) : (
-
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover transition duration-500 hover:scale-105"
-                  />
-
-                )}
-
-              </div>
-
-              <div className="p-8">
-
-                <h3 className="text-3xl font-bold text-white mb-4">
-                  {service.title}
-                </h3>
-
-                <p className="text-gray-400 leading-8 mb-8">
-                  {service.text}
-                </p>
-
-                <Link
-                  href={service.link}
-                  className="inline-flex rounded-full bg-red-600 px-7 py-3 font-bold text-white transition hover:bg-red-700"
-                >
-                  Ver más
-                </Link>
-
-              </div>
-
-            </motion.div>
-
+              title={service.title}
+              text={service.text}
+              video={service.video}
+              image={service.image}
+              link={service.link}
+            />
           ))}
 
         </div>

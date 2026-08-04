@@ -1,8 +1,6 @@
 import Hero from "./components/Hero";
 import Servicios from "./components/Servicios";
-import GaleriaFotos from "./components/GaleriaFotos";
-import GaleriaVideos from "./components/GaleriaVideos";
-import Proceso from "./components/Proceso";
+import Proyectos from "./components/Proyectos";
 import CTA from "./components/CTA";
 
 export default function InmobiliariasPage() {
@@ -13,11 +11,7 @@ export default function InmobiliariasPage() {
 
       <Servicios />
 
-      <GaleriaFotos />
-
-      <GaleriaVideos />
-
-      <Proceso />
+      <Proyectos />
 
       <CTA />
 

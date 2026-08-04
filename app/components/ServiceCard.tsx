@@ -6,15 +6,17 @@ import { motion } from "framer-motion";
 type Props = {
   title: string;
   text: string;
-  video: string;
   link: string;
+  video?: string;
+  image?: string;
 };
 
 export default function ServiceCard({
   title,
   text,
-  video,
   link,
+  video,
+  image,
 }: Props) {
   return (
     <motion.div
@@ -27,16 +29,28 @@ export default function ServiceCard({
     >
       <div className="aspect-[16/10] overflow-hidden bg-black">
 
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="w-full h-full object-cover"
-        >
-          <source src={video} type="video/mp4" />
-        </video>
+        {video ? (
+
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover transition duration-500 hover:scale-105"
+          >
+            <source src={video} type="video/mp4" />
+          </video>
+
+        ) : (
+
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover transition duration-500 hover:scale-105"
+          />
+
+        )}
 
       </div>
 
@@ -58,7 +72,6 @@ export default function ServiceCard({
         </Link>
 
       </div>
-
     </motion.div>
   );
 }

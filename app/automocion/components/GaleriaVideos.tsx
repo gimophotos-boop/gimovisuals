@@ -6,27 +6,48 @@ const videos = Array.from({ length: 30 }, (_, i) => ({
 
 export default function GaleriaVideos() {
   return (
-    <section className="bg-zinc-950 py-24 px-6">
+    <section className="bg-zinc-950 py-32">
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-6">
 
-        <h2 className="text-5xl font-black text-center text-white mb-16">
-          Vídeos
-        </h2>
+        <div className="text-center mb-20">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-6">
+            VÍDEOS
+          </p>
 
-          {videos.map((video) => (
+          <h2 className="text-5xl md:text-7xl font-black text-white mb-8">
+            Cinematic Automotive
+          </h2>
 
-            <video
-              key={video.src}
-              controls
-              playsInline
-              preload="metadata"
-              className="w-full rounded-3xl border border-white/10"
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-9">
+            Una selección de vídeos realizados para vehículos, marcas,
+            concesionarios y eventos del motor.
+          </p>
+
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-8">
+
+          {videos.map((video, i) => (
+
+            <div
+              key={i}
+              className="overflow-hidden rounded-[28px] bg-black border border-white/10"
             >
-              <source src={video.src} type="video/mp4" />
-            </video>
+
+              <video
+                controls
+                preload="metadata"
+                className="w-full aspect-video object-cover"
+              >
+                <source
+                  src={video.src}
+                  type="video/mp4"
+                />
+              </video>
+
+            </div>
 
           ))}
 

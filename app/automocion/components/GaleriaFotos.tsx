@@ -6,7 +6,7 @@ import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 
 const images = Array.from({ length: 84 }, (_, i) => ({
-  src: `/assets/images/portfolio/automocion/${i + 1}.jpg`,
+  src: `/assets/images/automocion/${i + 1}.jpg`,
 }));
 
 export default function GaleriaFotos() {
@@ -14,46 +14,57 @@ export default function GaleriaFotos() {
   const [index, setIndex] = useState(0);
 
   return (
-    <>
-      <section
-        id="galeria"
-        className="bg-black py-24 px-6"
-      >
-        <div className="max-w-7xl mx-auto">
+    <section
+      id="galeria"
+      className="bg-black py-32"
+    >
+      <div className="max-w-7xl mx-auto px-6">
 
-          <h2 className="text-5xl font-black text-center mb-16 text-white">
-            Galería
+        <div className="text-center mb-20">
+
+          <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-6">
+            GALERÍA
+          </p>
+
+          <h2 className="text-5xl md:text-7xl font-black text-white mb-8">
+            Algunos de mis trabajos
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            {images.map((image, i) => (
-
-              <div
-                key={image.src}
-                onClick={() => {
-                  setIndex(i);
-                  setOpen(true);
-                }}
-                className="group cursor-pointer overflow-hidden rounded-3xl"
-              >
-
-                <Image
-                  src={image.src}
-                  alt={`Automoción ${i + 1}`}
-                  width={900}
-                  height={700}
-                  className="w-full h-[350px] object-cover transition duration-700 group-hover:scale-110"
-                />
-
-              </div>
-
-            ))}
-
-          </div>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-9">
+            Una pequeña selección de fotografías realizadas para
+            concesionarios, eventos, deportivos, clásicos y marcas.
+          </p>
 
         </div>
-      </section>
+
+        <div className="columns-1 md:columns-2 xl:columns-3 gap-6 space-y-6">
+
+          {images.map((image, i) => (
+
+            <div
+              key={image.src}
+              onClick={() => {
+                setIndex(i);
+                setOpen(true);
+              }}
+              className="overflow-hidden rounded-[28px] cursor-pointer group break-inside-avoid"
+            >
+
+              <Image
+                src={image.src}
+                alt=""
+                width={1200}
+                height={800}
+                className="w-full h-auto transition duration-700 group-hover:scale-105"
+              />
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </div>
 
       <Lightbox
         open={open}
@@ -61,6 +72,7 @@ export default function GaleriaFotos() {
         slides={images}
         index={index}
       />
-    </>
+
+    </section>
   );
 }

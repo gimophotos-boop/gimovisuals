@@ -13,7 +13,7 @@ const services = [
   {
     title: "Inmobiliarias",
     text: "Fotografía, vídeo y dron para vender propiedades más rápido.",
-    image: "/assets/images/covers/inmobiliarias.jpg",
+    video: "/assets/videos/inmobiliarias.mp4",
     link: "/inmobiliarias",
   },
   {
@@ -29,29 +29,25 @@ const services = [
     link: "/retratos",
   },
   {
-    title: "Eventos",
-    text: "Cobertura completa de eventos deportivos, privados y corporativos.",
-    image: "/assets/images/covers/eventos.jpg",
-    link: "/eventos",
+    title: "Deporte",
+    text: "Cobertura completa de eventos deportivos y corporativos.",
+    video: "/assets/videos/deporte.mp4",
+    link: "/deporte",
   },
   {
-    title: "Dron",
-    text: "Grabaciones aéreas en 4K para cualquier proyecto.",
-    image: "/assets/images/covers/deporte.jpg",
-    link: "/deporte",
+    title: "Bodas",
+    text: "Fotografía y vídeo cinematográfico para inmortalizar vuestro gran día.",
+    video: "/assets/videos/bodas.mp4",
+    link: "/bodas",
   },
 ];
 
 export default function Services() {
   return (
-    <section
-      id="services"
-      className="bg-black py-40 px-6"
-    >
+    <section id="services" className="bg-black py-40 px-6">
       <div className="max-w-7xl mx-auto">
 
         <div className="text-center mb-24">
-
           <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-5">
             SERVICIOS
           </p>
@@ -63,7 +59,6 @@ export default function Services() {
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Cada proyecto está pensado para transmitir profesionalidad y generar resultados.
           </p>
-
         </div>
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
@@ -83,7 +78,7 @@ export default function Services() {
               className="overflow-hidden rounded-[30px] border border-zinc-800 bg-zinc-950"
             >
 
-              <div className="aspect-[16/10] overflow-hidden">
+              <div className="aspect-[16/10] overflow-hidden bg-black">
 
                 {service.video ? (
 
@@ -92,8 +87,8 @@ export default function Services() {
                     muted
                     loop
                     playsInline
-                    preload="metadata"
-                    className="h-full w-full object-cover transition duration-500 hover:scale-110"
+                    preload="auto"
+                    className="w-full h-full object-cover transition duration-500 hover:scale-105"
                   >
                     <source src={service.video} type="video/mp4" />
                   </video>
@@ -103,7 +98,7 @@ export default function Services() {
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="h-full w-full object-cover transition duration-500 hover:scale-110"
+                    className="w-full h-full object-cover transition duration-500 hover:scale-105"
                   />
 
                 )}

@@ -13,7 +13,7 @@ const services = [
   {
     title: "Inmobiliarias",
     text: "Fotografía, vídeo y dron para vender propiedades más rápido.",
-    video: "/assets/videos/inmobiliarias.mp4",
+    video: "/assets/videos/inmo.mp4",
     link: "/inmobiliarias",
   },
   {
@@ -31,13 +31,13 @@ const services = [
   {
     title: "Deporte",
     text: "Cobertura completa de eventos deportivos y corporativos.",
-    video: "/assets/videos/deporte.mp4",
+    image: "/assets/images/covers/deporte.jpg",
     link: "/deporte",
   },
   {
     title: "Bodas",
     text: "Fotografía y vídeo cinematográfico para inmortalizar vuestro gran día.",
-    video: "/assets/videos/bodas.mp4",
+    image: "/assets/images/covers/bodas.jpg",
     link: "/bodas",
   },
 ];

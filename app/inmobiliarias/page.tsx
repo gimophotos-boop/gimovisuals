@@ -1,19 +1,26 @@
-import Hero from "./components/Hero";
-import Servicios from "./components/Servicios";
 import Proyectos from "./components/Proyectos";
-import CTA from "./components/CTA";
 
 export default function InmobiliariasPage() {
   return (
-    <main className="bg-black text-white">
+    <main className="min-h-screen bg-black text-white">
 
-      <Hero />
+      <section className="py-20 px-6">
 
-      <Servicios />
+        <div className="max-w-7xl mx-auto">
+
+          <h1 className="text-5xl md:text-7xl font-black mb-6">
+            Inmobiliarias
+          </h1>
+
+          <p className="text-xl text-gray-400">
+            Fotografía, vídeo y dron profesional.
+          </p>
+
+        </div>
+
+      </section>
 
       <Proyectos />
-
-      <CTA />
 
     </main>
   );

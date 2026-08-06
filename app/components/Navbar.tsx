@@ -20,7 +20,7 @@ export default function Navbar() {
     { name: "Inicio", href: "/" },
     { name: "Automoción", href: "/automocion" },
     { name: "Inmobiliarias", href: "/inmobiliarias" },
-    { name: "Empresas", href: "/empresas" },
+    { name: "Eventos", href: "/eventos" },
     { name: "Deporte", href: "/deporte" },
     { name: "Bodas", href: "/bodas" },
     { name: "Retratos", href: "/retratos" },
@@ -35,7 +35,7 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-5">
+      <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
 
         <a href="/">
           <img
@@ -46,7 +46,6 @@ export default function Navbar() {
         </a>
 
         <nav className="hidden lg:flex items-center gap-10">
-
           {links.map((link) => (
             <a
               key={link.name}
@@ -63,7 +62,6 @@ export default function Navbar() {
           >
             Solicitar presupuesto
           </a>
-
         </nav>
 
         <button

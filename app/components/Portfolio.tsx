@@ -19,11 +19,11 @@ const categories = [
     href: "/inmobiliarias",
   },
   {
-    title: "Empresas",
-    image: "/assets/images/portfolio/negocios/1.jpg",
+    title: "Eventos",
+    image: "/assets/images/eventos/living-the-sound-2026/1.jpg",
     description:
-      "Contenido visual para negocios, marcas, restaurantes y comercios.",
-    href: "/negocios",
+      "Fotografía y vídeo profesional para festivales, DJs, conciertos y grandes eventos.",
+    href: "/eventos",
   },
   {
     title: "Deporte",
@@ -123,7 +123,6 @@ export default function Portfolio() {
                     className="inline-flex items-center gap-3 rounded-full border border-red-600 bg-red-600 px-8 py-4 text-white font-semibold"
                   >
                     Ver proyecto
-
                     <span className="text-xl">→</span>
                   </motion.div>
                 </div>

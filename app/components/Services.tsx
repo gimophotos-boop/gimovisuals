@@ -16,10 +16,10 @@ const services = [
     link: "/inmobiliarias",
   },
   {
-    title: "Empresas",
-    text: "Contenido corporativo para potenciar la imagen de tu negocio.",
-    image: "/assets/images/covers/empresas.jpg",
-    link: "/empresas",
+    title: "Eventos",
+    text: "Fotografía y vídeo profesional para festivales, DJs, conciertos y grandes eventos.",
+    video: "/assets/videos/eventos/living-the-sound-2026/video.mp4",
+    link: "/eventos",
   },
   {
     title: "Retratos",

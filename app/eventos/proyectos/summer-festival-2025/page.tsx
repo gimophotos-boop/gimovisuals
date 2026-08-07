@@ -1,6 +1,6 @@
-import EventProjectTemplate from "@/app/components/EventProjectTemplate";
-import { project } from "./data";
+import ProyectoEvento from "../../components/ProyectoEvento";
+import { data } from "./data";
 
 export default function Page() {
-  return <EventProjectTemplate project={project} />;
+  return <ProyectoEvento data={data} />;
 }

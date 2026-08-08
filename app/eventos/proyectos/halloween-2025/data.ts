@@ -1,15 +1,15 @@
 export const project = {
-  title: "MonDj",
+  title: "Halloween 2025",
   location: "La Pobla de Mafumet",
   description:
-    "Disfrutando las fiestas del Lledó con MonDj.",
+    "La noche más terrorífica del año.",
   heroImage:
-    "/assets/images/eventos/mondj/1.jpg",
+    "/assets/images/eventos/halloween-2025/1.jpg",
   images: Array.from(
     { length: 12 },
     (_, i) =>
-      `/assets/images/eventos/mondj/${i + 1}.jpg`
+      `/assets/images/eventos/halloween-2025/${i + 1}.jpg`
   ),
-  artists: ["MonDj"],
+  artists: [],
   services: ["Fotografía profesional", "Vídeo profesional"],
 };

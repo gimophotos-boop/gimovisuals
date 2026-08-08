@@ -6,10 +6,10 @@ type ProyectoData = {
   title: string;
   location: string;
   description: string;
-  heroVideo: string;
-  artists: string[];
-  services: string[];
+  heroImage: string;
   images: string[];
+  artists?: string[];
+  services?: string[];
 };
 
 export default function ProyectoEvento({
@@ -20,17 +20,15 @@ export default function ProyectoEvento({
   return (
     <main className="bg-black text-white">
 
+      {/* PORTADA */}
+
       <section className="relative h-[80vh] overflow-hidden">
 
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
+        <img
+          src={data.heroImage}
+          alt={data.title}
           className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src={data.heroVideo} type="video/mp4" />
-        </video>
+        />
 
         <div className="absolute inset-0 bg-black/60" />
 
@@ -52,6 +50,9 @@ export default function ProyectoEvento({
 
       </section>
 
+
+      {/* INFORMACIÓN */}
+
       <section className="py-24 px-6">
 
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-16">
@@ -68,33 +69,50 @@ export default function ProyectoEvento({
 
           </div>
 
+
           <div>
 
-            <h3 className="text-2xl font-bold mb-6">
-              Artistas
-            </h3>
+            {data.artists && data.artists.length > 0 && (
+              <>
+                <h3 className="text-2xl font-bold mb-6">
+                  Artistas
+                </h3>
 
-            <ul className="space-y-3 text-gray-300 mb-12">
-              {data.artists.map((artist) => (
-                <li key={artist}>• {artist}</li>
-              ))}
-            </ul>
+                <ul className="space-y-3 text-gray-300 mb-12">
+                  {data.artists.map((artist) => (
+                    <li key={artist}>
+                      • {artist}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
 
-            <h3 className="text-2xl font-bold mb-6">
-              Servicios realizados
-            </h3>
 
-            <ul className="space-y-3 text-gray-300">
-              {data.services.map((service) => (
-                <li key={service}>• {service}</li>
-              ))}
-            </ul>
+            {data.services && data.services.length > 0 && (
+              <>
+                <h3 className="text-2xl font-bold mb-6">
+                  Servicios realizados
+                </h3>
+
+                <ul className="space-y-3 text-gray-300">
+                  {data.services.map((service) => (
+                    <li key={service}>
+                      • {service}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
 
           </div>
 
         </div>
 
       </section>
+
+
+      {/* GALERÍA */}
 
       <section className="pb-28 px-6">
 
@@ -111,7 +129,7 @@ export default function ProyectoEvento({
                 key={image}
                 src={image}
                 className="rounded-2xl object-cover w-full aspect-[4/3]"
-                alt=""
+                alt={data.title}
               />
             ))}
 
@@ -120,6 +138,9 @@ export default function ProyectoEvento({
         </div>
 
       </section>
+
+
+      {/* VOLVER */}
 
       <section className="pb-28 text-center">
 

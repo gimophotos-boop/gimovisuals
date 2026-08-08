@@ -1,15 +1,13 @@
-export const data = {
+export const project = {
   title: "Living The Sound 2025",
   location: "La Pobla de Mafumet",
   description:
-    "Cobertura fotográfica y de vídeo de la fiesta de San Juan Living The Sound 2025.",
-  heroVideo:
-    "/assets/videos/eventos/living-the-sound-2025/video.mp4",
-  artists: ["DJ Salmer", "DJ Miki"],
-  services: ["Fotografía profesional", "Vídeo profesional"],
+    "La mejor forma de disfrutar la noche de San Juan.",
+  heroImage: "/assets/images/eventos/living-the-sound-2025/1.jpg",
   images: Array.from(
     { length: 12 },
-    (_, i) =>
-      `/assets/images/eventos/living-the-sound-2025/${i + 1}.jpg`
+    (_, i) => `/assets/images/eventos/living-the-sound-2025/${i + 1}.jpg`
   ),
+  artists: [],
+  services: ["Fotografía profesional", "Vídeo profesional"],
 };

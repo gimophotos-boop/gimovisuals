@@ -1,6 +1,6 @@
 import ProyectoEvento from "../../components/ProyectoEvento";
-import { data } from "./data";
+import { project } from "./data";
 
 export default function Page() {
-  return <ProyectoEvento data={data} />;
+  return <ProyectoEvento data={project} />;
 }

@@ -24,36 +24,38 @@ export default function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="overflow-hidden rounded-[30px] border border-zinc-800 bg-zinc-950"
+      className="overflow-hidden rounded-[24px] border border-zinc-800 bg-zinc-950"
     >
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        className="aspect-video w-full object-cover"
-      >
-        <source src={video} type="video/mp4" />
-      </video>
+      <div className="aspect-video overflow-hidden bg-black">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover"
+        >
+          <source src={video} type="video/mp4" />
+        </video>
+      </div>
 
-      <div className="p-8">
+      <div className="p-6">
 
-        <p className="mb-3 uppercase tracking-[4px] text-red-500 font-semibold">
+        <p className="mb-2 uppercase tracking-[3px] text-sm text-red-500 font-semibold">
           {location}
         </p>
 
-        <h2 className="mb-4 text-4xl font-black">
+        <h2 className="mb-3 text-2xl font-black">
           {title}
         </h2>
 
-        <p className="mb-8 text-gray-400 leading-8">
+        <p className="mb-6 text-sm text-gray-400 leading-6">
           {description}
         </p>
 
         <Link
           href={href}
-          className="inline-flex rounded-full bg-red-600 px-8 py-4 font-semibold hover:bg-red-700 transition"
+          className="inline-flex rounded-full bg-red-600 px-6 py-3 text-sm font-semibold hover:bg-red-700 transition"
         >
           Ver proyecto
         </Link>

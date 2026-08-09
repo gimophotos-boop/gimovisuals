@@ -8,7 +8,7 @@ import { project } from "./data";
 import Gallery from "@/app/components/gallery/Gallery";
 import Lightbox from "@/app/components/gallery/Lightbox";
 
-export default function CasaLaMoreraPage() {
+export default function KellyPage() {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState(0);
 
@@ -30,19 +30,27 @@ export default function CasaLaMoreraPage() {
   }
 
   return (
-    <main className="px-6 py-20">
-      <div className="max-w-7xl mx-auto">
+    <main className="min-h-screen bg-black text-white">
+      <div className="max-w-7xl mx-auto px-6 py-20">
 
         <Link
-          href="/inmobiliarias"
+          href="/retratos/playa"
           className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition mb-10"
         >
-          ← Volver a Inmobiliarias
+          ← Volver a Playa
         </Link>
 
-        <h1 className="text-5xl md:text-7xl font-black mb-16">
-          Casa La Morera
+        <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-6">
+          RETRATOS
+        </p>
+
+        <h1 className="text-5xl md:text-7xl font-black mb-8">
+          {project.title}
         </h1>
+
+        <p className="max-w-3xl text-xl text-gray-400 leading-9 mb-20">
+          {project.description}
+        </p>
 
         <section>
           <h2 className="text-3xl font-bold mb-8">

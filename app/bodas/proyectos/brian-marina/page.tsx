@@ -49,19 +49,9 @@ export default function BrianMarinaPage() {
             {project.title}
           </h1>
 
-          <p className="max-w-3xl text-xl text-gray-400 leading-9 mb-12">
+          <p className="max-w-3xl text-xl text-gray-400 leading-9 mb-20">
             {project.description}
           </p>
-
-          <div className="aspect-video rounded-[30px] overflow-hidden bg-zinc-900 mb-20">
-            <video
-              className="w-full h-full object-cover"
-              src={project.coverVideo}
-              controls
-              muted
-              playsInline
-            />
-          </div>
 
           <section>
             <h2 className="text-3xl font-bold mb-8">

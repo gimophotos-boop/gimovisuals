@@ -9,18 +9,21 @@ const proyectos = [
     description:
       "Una selección de fotografías de la boda de Juan Carlos y Yaiza.",
     href: "/bodas/proyectos/juan-carlos-yaiza",
+    video: "/assets/videos/bodas/juan-carlos-yaiza.mp4",
   },
   {
     title: "Boda Brian y Marina",
     description:
       "Una selección de fotografías de la boda de Brian y Marina.",
     href: "/bodas/proyectos/brian-marina",
+    video: "/assets/videos/bodas/brian-marina.mp4",
   },
   {
     title: "Comunión Rosa",
     description:
       "Una selección de fotografías de la comunión de Rosa.",
     href: "/bodas/proyectos/comunion-rosa",
+    video: "/assets/videos/bodas/comunion-rosa.mp4",
   },
 ];
 
@@ -50,44 +53,57 @@ export default function BodasPage() {
       <section className="py-12 px-6">
         <div className="max-w-7xl mx-auto">
 
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
-            Servicios
-          </h2>
-
-          <p className="max-w-3xl text-lg text-gray-400 leading-8 mb-14">
-            Fotografía natural y cuidada para contar vuestra historia
-            de principio a fin.
+          <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-6">
+            SERVICIOS
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <h2 className="text-4xl md:text-5xl font-black mb-6">
+            Qué ofrecemos
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
             <div className="rounded-[30px] border border-zinc-800 bg-zinc-950 p-8">
               <h3 className="text-2xl font-black mb-4">
-                Cobertura completa
+                Fotografía de boda
               </h3>
+
               <p className="text-gray-400 leading-7">
-                Desde los preparativos hasta los momentos más importantes
-                de la celebración.
+                Capturamos cada momento de forma natural, elegante y llena de
+                emoción.
               </p>
             </div>
 
             <div className="rounded-[30px] border border-zinc-800 bg-zinc-950 p-8">
               <h3 className="text-2xl font-black mb-4">
-                Fotografía natural
+                Vídeo cinematográfico
               </h3>
+
               <p className="text-gray-400 leading-7">
-                Imágenes espontáneas y naturales que transmiten lo que
-                realmente ocurrió.
+                Películas de boda con un estilo moderno para revivir vuestro
+                día una y otra vez.
               </p>
             </div>
 
             <div className="rounded-[30px] border border-zinc-800 bg-zinc-950 p-8">
               <h3 className="text-2xl font-black mb-4">
-                Recuerdos para siempre
+                Dron
               </h3>
+
               <p className="text-gray-400 leading-7">
-                Una selección cuidada de fotografías para volver a vivir
-                cada momento.
+                Imágenes aéreas espectaculares para completar el recuerdo de
+                vuestro gran día.
+              </p>
+            </div>
+
+            <div className="rounded-[30px] border border-zinc-800 bg-zinc-950 p-8">
+              <h3 className="text-2xl font-black mb-4">
+                Entrega premium
+              </h3>
+
+              <p className="text-gray-400 leading-7">
+                Todo el material editado con máxima calidad y preparado para
+                compartir y conservar.
               </p>
             </div>
 
@@ -100,16 +116,15 @@ export default function BodasPage() {
         <div className="max-w-7xl mx-auto">
 
           <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-6">
-            PORTFOLIO
+            TRABAJOS
           </p>
 
           <h2 className="text-4xl md:text-5xl font-black mb-6">
-            Trabajos
+            Algunas de nuestras historias
           </h2>
 
           <p className="max-w-3xl text-lg text-gray-400 leading-8 mb-14">
-            Algunas de las historias que hemos tenido la oportunidad
-            de fotografiar.
+            Descubre algunos de los trabajos que hemos realizado.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -125,15 +140,20 @@ export default function BodasPage() {
                   delay: index * 0.08,
                 }}
               >
-                <Link
-                  href={proyecto.href}
-                  className="group block overflow-hidden rounded-[30px] border border-zinc-800 bg-zinc-950 transition duration-500 hover:border-red-600"
-                >
 
-                  <div className="aspect-[4/3] bg-zinc-900 flex items-center justify-center">
-                    <span className="text-zinc-700 text-sm uppercase tracking-[4px]">
-                      Portada próximamente
-                    </span>
+                <div className="group overflow-hidden rounded-[30px] border border-zinc-800 bg-zinc-950 transition duration-500 hover:border-red-600">
+
+                  <div className="aspect-[4/3] bg-zinc-900 overflow-hidden">
+
+                    <video
+                      className="w-full h-full object-cover"
+                      src={proyecto.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+
                   </div>
 
                   <div className="p-8">
@@ -147,14 +167,20 @@ export default function BodasPage() {
                     </p>
 
                     <div className="mt-6">
-                      <span className="inline-flex rounded-full bg-red-600 px-7 py-3 font-semibold transition group-hover:bg-red-700">
+
+                      <Link
+                        href={proyecto.href}
+                        className="inline-flex rounded-full bg-red-600 px-7 py-3 font-semibold transition hover:bg-red-700"
+                      >
                         Ver proyecto
-                      </span>
+                      </Link>
+
                     </div>
 
                   </div>
 
-                </Link>
+                </div>
+
               </motion.div>
             ))}
 

@@ -20,21 +20,12 @@ export default function ProyectoDeporte({
   return (
     <main>
 
-      <section className="relative h-[80vh] overflow-hidden">
+      {/* CABECERA DEL PROYECTO */}
 
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src={data.heroVideo} type="video/mp4" />
-        </video>
+      <section className="relative py-32 px-6 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(220,38,38,.12),transparent_60%)]" />
 
-        <div className="absolute inset-0 bg-black/60" />
-
-        <div className="relative z-10 max-w-7xl mx-auto h-full flex flex-col justify-end px-6 pb-20">
+        <div className="relative z-10 max-w-7xl mx-auto">
 
           <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-5">
             DEPORTE
@@ -44,13 +35,15 @@ export default function ProyectoDeporte({
             {data.title}
           </h1>
 
-          <p className="text-xl text-gray-300">
+          <p className="text-xl text-gray-400">
             {data.location}
           </p>
 
         </div>
 
       </section>
+
+      {/* INFORMACIÓN DEL EVENTO */}
 
       <section className="py-24 px-6">
 
@@ -96,6 +89,8 @@ export default function ProyectoDeporte({
 
       </section>
 
+      {/* GALERÍA */}
+
       <section className="pb-28 px-6">
 
         <div className="max-w-7xl mx-auto">
@@ -120,6 +115,8 @@ export default function ProyectoDeporte({
         </div>
 
       </section>
+
+      {/* VOLVER */}
 
       <section className="pb-28 text-center">
 

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 type ProyectoData = {
   title: string;
@@ -17,39 +18,10 @@ export default function ProyectoEvento({
 }: {
   data: ProyectoData;
 }) {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
     <main className="bg-black text-white">
-
-      {/* PORTADA */}
-
-      <section className="relative h-[80vh] overflow-hidden">
-
-        <img
-          src={data.heroImage}
-          alt={data.title}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-
-        <div className="absolute inset-0 bg-black/60" />
-
-        <div className="relative z-10 max-w-7xl mx-auto h-full flex flex-col justify-end px-6 pb-20">
-
-          <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-5">
-            EVENTO
-          </p>
-
-          <h1 className="text-5xl md:text-7xl font-black mb-8">
-            {data.title}
-          </h1>
-
-          <p className="text-xl text-gray-300">
-            {data.location}
-          </p>
-
-        </div>
-
-      </section>
-
 
       {/* INFORMACIÓN */}
 
@@ -58,6 +30,14 @@ export default function ProyectoEvento({
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-16">
 
           <div className="lg:col-span-2">
+
+            <h1 className="text-4xl md:text-5xl font-black mb-8">
+              {data.title}
+            </h1>
+
+            <p className="text-xl text-gray-300 mb-8">
+              {data.location}
+            </p>
 
             <h2 className="text-4xl font-black mb-8">
               Sobre el evento
@@ -68,7 +48,6 @@ export default function ProyectoEvento({
             </p>
 
           </div>
-
 
           <div>
 
@@ -87,7 +66,6 @@ export default function ProyectoEvento({
                 </ul>
               </>
             )}
-
 
             {data.services && data.services.length > 0 && (
               <>
@@ -125,12 +103,20 @@ export default function ProyectoEvento({
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
             {data.images.map((image) => (
-              <img
+              <button
                 key={image}
-                src={image}
-                className="rounded-2xl object-cover w-full aspect-[4/3]"
-                alt={data.title}
-              />
+                type="button"
+                onClick={() => setSelectedImage(image)}
+                className="group relative overflow-hidden rounded-2xl bg-neutral-900 cursor-zoom-in"
+              >
+                <img
+                  src={image}
+                  alt={data.title}
+                  className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </button>
             ))}
 
           </div>
@@ -152,6 +138,32 @@ export default function ProyectoEvento({
         </Link>
 
       </section>
+
+
+      {/* VISOR DE IMAGEN AMPLIADA */}
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-6"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-6 right-6 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white text-3xl flex items-center justify-center transition"
+            aria-label="Cerrar imagen"
+          >
+            ×
+          </button>
+
+          <img
+            src={selectedImage}
+            alt={data.title}
+            className="max-w-full max-h-[90vh] object-contain rounded-xl"
+            onClick={(event) => event.stopPropagation()}
+          />
+        </div>
+      )}
 
     </main>
   );

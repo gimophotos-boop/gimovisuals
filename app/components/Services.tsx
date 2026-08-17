@@ -18,7 +18,7 @@ const services = [
   {
     title: "Eventos",
     text: "Fotografía y vídeo profesional para festivales, DJs, conciertos y grandes eventos.",
-    video: "/assets/videos/eventos/living-the-sound-2026/video.mp4",
+    image: "/assets/images/eventos/eventos.jpg",
     link: "/eventos",
   },
   {

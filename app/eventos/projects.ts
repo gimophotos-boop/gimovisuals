@@ -24,11 +24,27 @@ export const projects = [
   },
 
   {
+    title: "Alvama Ice",
+    location: "La Pobla de Mafumet",
+    description: "Disfrutando de las fiestas del Lledó con Alvama Ice",
+    video: "/assets/videos/eventos/alvama-ice/video.mp4",
+    href: "/eventos/proyectos/alvama-ice",
+  },
+
+  {
     title: "Summer Festival 2025",
     location: "La Pobla de Mafumet",
     description: "Festival de Verano con Henry Méndez.",
     video: "/assets/videos/eventos/summer-festival-2025/video.mp4",
     href: "/eventos/proyectos/summer-festival-2025",
+  },
+
+  {
+    title: "Henry Méndez",
+    location: "La Pobla de Mafumet",
+    description: "Festival de Verano con Henry Méndez.",
+    video: "/assets/videos/eventos/henry-mendez/video.mp4",
+    href: "/eventos/proyectos/henry-mendez",
   },
 
   {
@@ -56,6 +72,14 @@ export const projects = [
   },
 
   {
+    title: "MonDj",
+    location: "La Pobla de Mafumet",
+    description: "Disfrutando las fiestas del Lledó con MonDj",
+    video: "/assets/videos/eventos/mondj/video.mp4",
+    href: "/eventos/proyectos/mondj",
+  },
+
+  {
     title: "Halloween 2024",
     location: "La Pobla de Mafumet",
     description: "La noche más terrorífica del año",
@@ -73,7 +97,26 @@ export const projects = [
   },
 
   {
-    title: "Concurso Internacional de Fuegos Artificiales 2026",
+    title: "Marsal Ventura",
+    location: "La Pobla de Mafumet",
+    description:
+      "Disfrutando del evento Techno Flamenco con su creador Marsal Ventura",
+    video: "/assets/videos/eventos/marsal-ventura/video.mp4",
+    href: "/eventos/proyectos/marsal-ventura",
+  },
+
+  {
+    title: "Concurso de Fuegos Artificiales de Tarragona 2025",
+    location: "Tarragona",
+    description:
+      "Disfrutando del sonido y el color en las noches de Julio en Tarragona",
+    video:
+      "/assets/videos/eventos/concurso-fuegos-artificiales-tarragona-2025/video.mp4",
+    href: "/eventos/proyectos/concurso-fuegos-artificiales-tarragona-2025",
+  },
+
+  {
+    title: "Concurso de Fuegos Artificiales de Tarragona 2026",
     location: "Tarragona",
     description:
       "Disfrutando del sonido y el color en las noches de Julio en Tarragona",

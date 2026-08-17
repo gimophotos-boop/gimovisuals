@@ -7,30 +7,38 @@ const destacados = [
   {
     nombre: "Henry Méndez",
     evento: "Summer Festival 2025",
-    href: "/eventos/proyectos/summer-festival-2025",
-    imagen: "/assets/images/eventos/henry-mendez/1.jpg",
+    href: "/eventos/proyectos/henry-mendez",
+    video: "/assets/videos/eventos/henry-mendez/video.mp4",
   },
   {
     nombre: "Marsal Ventura",
     evento: "Techno Flamenco 2024",
-    href: "/eventos/proyectos/techno-flamenco-2024",
-    imagen: "/assets/images/eventos/techno-flamenco-2024/1.jpg",
+    href: "/eventos/proyectos/marsal-ventura",
+    video: "/assets/videos/eventos/marsal-ventura/video.mp4",
   },
   {
     nombre: "Alvama Ice",
     evento: "Pobla Lledó Session 2026",
     href: "/eventos/proyectos/alvama-ice",
-    imagen: "/assets/images/eventos/alvama-ice/1.jpg",
+    video: "/assets/videos/eventos/alvama-ice/video.mp4",
   },
   {
-    nombre: "Mondj",
+    nombre: "MonDj",
     evento: "Pobla Lledó Session 2025",
-    href: "/eventos/proyectos/pobla-lledo-session-2025",
-    imagen: "/assets/images/eventos/pobla-lledo-session-2025/1.jpg",
+    href: "/eventos/proyectos/mondj",
+    video: "/assets/videos/eventos/mondj/video.mp4",
   },
 ];
 
 export default function Proyectos() {
+  const eventos = projects.filter(
+    (project) =>
+      project.href !== "/eventos/proyectos/henry-mendez" &&
+      project.href !== "/eventos/proyectos/marsal-ventura" &&
+      project.href !== "/eventos/proyectos/alvama-ice" &&
+      project.href !== "/eventos/proyectos/mondj"
+  );
+
   return (
     <section className="pb-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -52,11 +60,16 @@ export default function Proyectos() {
                 href={artista.href}
                 className="group relative overflow-hidden rounded-2xl aspect-[4/5] bg-neutral-900"
               >
-                <img
-                  src={artista.imagen}
-                  alt={`${artista.nombre} - ${artista.evento}`}
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                >
+                  <source src={artista.video} type="video/mp4" />
+                </video>
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
 
@@ -81,7 +94,7 @@ export default function Proyectos() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
+            {eventos.map((project) => (
               <ProjectCard
                 key={project.href}
                 title={project.title}

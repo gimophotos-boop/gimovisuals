@@ -173,3 +173,18 @@ html{
   0 0 40px rgba(220,38,38,.18),
   0 0 100px rgba(220,38,38,.12);
 }
+/* Cursor limpio y nativo */
+html,
+body,
+a,
+button,
+input,
+textarea,
+select {
+  cursor: default;
+}
+
+a,
+button {
+  cursor: pointer;
+}

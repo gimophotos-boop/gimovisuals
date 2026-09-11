@@ -1,77 +1,83 @@
 "use client";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
-type Props = {
+interface ServiceCardProps {
   title: string;
   text: string;
+  images: string[];
   link: string;
-  video?: string;
-  image?: string;
-};
+}
 
 export default function ServiceCard({
   title,
   text,
+  images,
   link,
-  video,
-  image,
-}: Props) {
+}: ServiceCardProps) {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrent((prev) => {
+        let next = Math.floor(Math.random() * images.length);
+
+        while (next === prev && images.length > 1) {
+          next = Math.floor(Math.random() * images.length);
+        }
+
+        return next;
+      });
+    }, 4500);
+
+    return () => clearInterval(interval);
+  }, [images]);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 70 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7 }}
-      whileHover={{ y: -10 }}
-      className="overflow-hidden rounded-[30px] border border-zinc-800 bg-zinc-950"
+    <a
+      href={link}
+      className="group relative block overflow-hidden rounded-[30px] bg-zinc-950 border border-zinc-800 hover:border-red-600 transition-all duration-500"
     >
-      <div className="aspect-[16/10] overflow-hidden bg-black">
+      <div className="relative aspect-[4/3] overflow-hidden bg-zinc-900">
 
-        {video ? (
-
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className="w-full h-full object-cover transition duration-500 hover:scale-105"
-          >
-            <source src={video} type="video/mp4" />
-          </video>
-
-        ) : (
-
+        {images.map((image, index) => (
           <img
+            key={`${image}-${index}`}
             src={image}
-            alt={title}
-            className="w-full h-full object-cover transition duration-500 hover:scale-105"
+            alt={`${title} - fotografía`}
+            className={`absolute inset-0 w-full h-full object-contain transition-all duration-1000 ${
+              index === current
+                ? "opacity-100 scale-100"
+                : "opacity-0 scale-105"
+            }`}
           />
+        ))}
 
-        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
       </div>
 
-      <div className="p-8">
-
-        <h3 className="text-3xl font-bold text-white mb-4">
+      <div className="p-7">
+        <h3 className="text-2xl font-black text-white group-hover:text-red-500 transition">
           {title}
         </h3>
 
-        <p className="text-gray-400 leading-8 mb-8">
+        <p className="mt-3 text-gray-400 leading-7">
           {text}
         </p>
 
-        <Link
-          href={link}
-          className="inline-flex rounded-full bg-red-600 px-7 py-3 font-bold text-white transition hover:bg-red-700"
-        >
-          Ver más
-        </Link>
+        <div className="mt-6 flex items-center justify-between">
+          <span className="text-xs uppercase tracking-[3px] text-gray-500">
+            GIMOVISUALS
+          </span>
 
+          <span className="font-semibold text-white group-hover:text-red-500 transition">
+            Ver trabajos →
+          </span>
+        </div>
       </div>
-    </motion.div>
+    </a>
   );
 }

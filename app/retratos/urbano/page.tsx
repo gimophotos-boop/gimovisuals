@@ -1,82 +1,168 @@
 "use client";
 
+import Navbar from "@/app/components/Navbar";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const sesiones = [
   {
-    title: "Sesión con su coche con Adri",
-    href: "/retratos/urbano/adri-coche",
+    title: "Adri",
+    href: "/retratos/urbano/adri-urbano",
+    carpeta: "urbano/adri-urbano",
+    description: "Una sesión urbana donde la elegancia es la protagonista.",
   },
   {
-    title: "Sesión en las vías con Adri",
-    href: "/retratos/urbano/adri-vias",
+    title: "Andrea",
+    href: "/retratos/urbano/andrea-poligono",
+    carpeta: "urbano/andrea-poligono",
+    description: "De las calles al ambiente industrial, una sesión con diferentes estilos.",
   },
   {
-    title: "Sesión muy callejera en un polígono con Andrea y Laura",
-    href: "/retratos/urbano/andrea-laura-poligono",
+    title: "Andrea",
+    href: "/retratos/urbano/andrea-urbana",
+    carpeta: "urbano/andrea-urbana",
+    description: "Un escenario industrial con mucho carácter y una estética urbana.",
   },
   {
-    title: "Sesión en las calles de un pueblo con Andrea",
-    href: "/retratos/urbano/andrea-pueblo",
+    title: "Laia",
+    href: "/retratos/urbano/laia-urbana",
+    carpeta: "urbano/laia-urbana",
+    description: "Una sesión urbana entre edificios y escenarios industriales.",
   },
   {
-    title: "Sesión en las vías de tren con Andrea",
-    href: "/retratos/urbano/andrea-vias",
+    title: "Laura",
+    href: "/retratos/urbano/laura-ciudad",
+    carpeta: "urbano/laura-ciudad",
+    description: "Una sesión urbana y desenfadada donde la actitud lo es todo.",
   },
   {
-    title: "Sesión muy callejera con Laia",
-    href: "/retratos/urbano/laia-calle",
+    title: "Laura",
+    href: "/retratos/urbano/laura-industrial",
+    carpeta: "urbano/laura-industrial",
+    description: "Una sesión urbana en un escenario industrial.",
   },
   {
-    title: "Sesión de calle con Olga",
-    href: "/retratos/urbano/olga-calle",
+    title: "Lucía",
+    href: "/retratos/urbano/lucia-parque",
+    carpeta: "urbano/lucia-parque",
+    description: "Los últimos rayos de sol para una sesión muy natural.",
   },
   {
-    title: "Sesión en las vías de tren con Olga",
-    href: "/retratos/urbano/olga-vias",
+    title: "Olga",
+    href: "/retratos/urbano/olga-atardecer",
+    carpeta: "urbano/olga-atardecer",
+    description: "Una carretera y los últimos rayos de sol. A veces no hace falta más.",
   },
   {
-    title: "Sesión callejera con Paula",
-    href: "/retratos/urbano/paula-calle",
+    title: "Olga",
+    href: "/retratos/urbano/olga-urbana",
+    carpeta: "urbano/olga-urbana",
+    description: "Cualquier calle puede convertirse en un escenario.",
   },
 ];
 
-export default function UrbanoPage() {
+const backgroundImages = sesiones
+  .flatMap((sesion) =>
+    Array.from(
+      { length: 12 },
+      (_, index) =>
+        `/assets/images/retratos/${sesion.carpeta}/${index + 1}.jpg`
+    )
+  )
+  .sort(() => Math.random() - 0.5);
+
+function PortadaSesion({
+  carpeta,
+  titulo,
+}: {
+  carpeta: string;
+  titulo: string;
+}) {
+  const [foto, setFoto] = useState("");
+
+  useEffect(() => {
+    const obtenerFoto = () =>
+      `/assets/images/retratos/${carpeta}/${Math.floor(Math.random() * 12) + 1}.jpg`;
+
+    setFoto(obtenerFoto());
+
+    const intervalo = setInterval(() => {
+      setFoto(obtenerFoto());
+    }, 5000);
+
+    return () => clearInterval(intervalo);
+  }, [carpeta]);
+
+  if (!foto) {
+    return <div className="absolute inset-0 bg-zinc-950" />;
+  }
+
   return (
-    <main className="min-h-screen bg-black text-white">
+    <div className="absolute inset-0 flex items-center justify-center overflow-hidden bg-zinc-950">
+      <img
+        src={foto}
+        alt={titulo}
+        className="h-full w-full object-contain transition-all duration-1000 group-hover:scale-[1.02]"
+      />
+    </div>
+  );
+}
 
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-7xl mx-auto">
+export default function UrbanoPage() {
+  const [currentImage, setCurrentImage] = useState(0);
 
-          <Link
-            href="/retratos"
-            className="inline-flex items-center gap-2 text-gray-500 hover:text-white transition mb-12"
-          >
-            ← Volver a Retratos
-          </Link>
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      setCurrentImage((prev) =>
+        prev === backgroundImages.length - 1 ? 0 : prev + 1
+      );
+    }, 4000);
 
-          <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-6">
+    return () => clearInterval(intervalo);
+  }, []);
+
+  return (
+    <main className="min-h-[1950px] bg-black text-white">
+      <Navbar />
+
+      {backgroundImages.map((image, index) => (
+        <div
+          key={image}
+          className={`fixed inset-0 bg-contain bg-center bg-fixed bg-no-repeat transition-opacity duration-1000 pointer-events-none ${
+            index === currentImage ? "opacity-50" : "opacity-0"
+          }`}
+          style={{
+            backgroundImage: `url("${image}")`,
+          }}
+        />
+      ))}
+
+      <div className="fixed inset-0 bg-black/25 pointer-events-none" />
+
+      <div className="fixed inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80 pointer-events-none" />
+
+
+      <section className="px-6 pb-20 pt-32">
+        <div className="mx-auto max-w-7xl">
+          <p className="relative top-[110px] mb-6 font-semibold uppercase tracking-[8px] text-red-500">
             RETRATOS
           </p>
 
-          <h1 className="text-5xl md:text-7xl font-black mb-6">
-            Sesiones urbanas
+          <h1 className="relative top-[130px] mb-6 text-5xl font-black md:text-7xl">
+            Urbano
           </h1>
 
-          <p className="max-w-3xl text-xl text-gray-400 leading-9">
+          <p className="relative top-[150px] max-w-3xl text-xl leading-9 text-gray-400">
             Retratos con un estilo urbano, callejero y moderno,
-            utilizando la ciudad y sus espacios como parte de la fotografía.
+            utilizando la ciudad como parte de la composición.
           </p>
-
         </div>
       </section>
 
-      <section className="pb-32 px-6">
-        <div className="max-w-7xl mx-auto">
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
+      <section className="relative z-10 top-[300px] px-6 pb-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
             {sesiones.map((sesion, index) => (
               <motion.div
                 key={sesion.href}
@@ -88,47 +174,47 @@ export default function UrbanoPage() {
                   delay: index * 0.08,
                 }}
               >
-
                 <Link
                   href={sesion.href}
-                  className="group block overflow-hidden rounded-[30px] border border-zinc-800 bg-zinc-950 hover:border-red-600 transition duration-500"
+                  className="group block rounded-[26px] border border-zinc-800 bg-zinc-950 transition duration-500 hover:border-red-600"
                 >
-
-                  <div className="aspect-[4/3] bg-zinc-900 flex items-center justify-center overflow-hidden">
-                    <span className="text-zinc-600 uppercase tracking-[4px] text-xs">
-                      Fotografía de la sesión
-                    </span>
+                  <div className="relative aspect-[4/3] overflow-hidden bg-zinc-950">
+                    <PortadaSesion
+                      carpeta={sesion.carpeta}
+                      titulo={sesion.title}
+                    />
                   </div>
 
-                  <div className="p-7">
-
-                    <h2 className="text-xl md:text-2xl font-black leading-tight group-hover:text-red-500 transition">
+                  <div className="px-6 py-5">
+                    <h2 className="text-xl font-black leading-tight transition group-hover:text-red-500 md:text-2xl">
                       {sesion.title}
                     </h2>
 
-                    <div className="mt-6 flex items-center justify-between">
-
-                      <span className="text-sm text-gray-500 uppercase tracking-[2px]">
-                        Retratos
-                      </span>
-
-                      <span className="text-sm font-semibold text-white group-hover:text-red-500 transition">
-                        Ver sesión →
-                      </span>
-
-                    </div>
+                    <p className="mt-3 text-sm leading-6 text-gray-400 md:text-base">
+                      {sesion.description}
+                    </p>
 
                   </div>
-
                 </Link>
-
               </motion.div>
             ))}
-
           </div>
-
         </div>
       </section>
+
+      <div
+        className="relative z-10 flex w-full justify-center pb-[40px]"
+        style={{ transform: "translateY(400px)" }}
+      >
+        <Link
+          href="/retratos"
+          className="text-gray-400 transition hover:text-white uppercase tracking-[3px]"
+        >
+          ← VOLVER A RETRATOS
+        </Link>
+      </div>
+
+      <div className="h-[100px]" aria-hidden="true" />
 
     </main>
   );

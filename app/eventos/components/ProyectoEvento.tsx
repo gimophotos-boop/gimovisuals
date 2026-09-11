@@ -7,11 +7,49 @@ type ProyectoData = {
   title: string;
   location: string;
   description: string;
-  heroImage: string;
   images: string[];
   artists?: string[];
   services?: string[];
 };
+
+const backgroundImages = [
+  "/assets/images/eventos/concurso-fuegos-artificiales-tarragona-2026/1.jpg",
+  "/assets/images/eventos/concurso-fuegos-artificiales-tarragona-2026/2.jpg",
+  "/assets/images/eventos/concurso-fuegos-artificiales-tarragona-2026/3.jpg",
+  "/assets/images/eventos/concurso-fuegos-artificiales-tarragona-2026/4.jpg",
+  "/assets/images/eventos/concurso-fuegos-artificiales-tarragona-2026/5.jpg",
+  "/assets/images/eventos/concurso-fuegos-artificiales-tarragona-2026/6.jpg",
+  "/assets/images/eventos/concurso-fuegos-artificiales-tarragona-2026/7.jpg",
+  "/assets/images/eventos/concurso-fuegos-artificiales-tarragona-2026/8.jpg",
+  "/assets/images/eventos/concurso-fuegos-artificiales-tarragona-2026/9.jpg",
+  "/assets/images/eventos/concurso-fuegos-artificiales-tarragona-2026/10.jpg",
+  "/assets/images/eventos/concurso-fuegos-artificiales-tarragona-2026/11.jpg",
+  "/assets/images/eventos/concurso-fuegos-artificiales-tarragona-2026/12.jpg",
+];
+
+const backgroundMap: Record<string, number> = {
+  "Living The Sound 2026": 0,
+  "Carnaval 2026": 1,
+  "Pobla Lledó Session 2026": 2,
+  "Summer Festival 2025": 3,
+  "Fiesta Remember 2025": 4,
+  "Living The Sound 2025": 5,
+  "Pobla Lledó Session 2025": 6,
+  "Halloween 2024": 7,
+  "Halloween 2025": 8,
+  "Techno Flamenco 2024": 9,
+  "Concurso de Fuegos Artificiales de Tarragona 2025": 10,
+  "Concurso de Fuegos Artificiales de Tarragona 2026": 11,
+  "Henry Méndez": 0,
+  "Marsal Ventura": 1,
+  "Alvama Ice": 2,
+  "MonDj": 3,
+};
+
+function getBackgroundImage(title: string) {
+  const index = backgroundMap[title] ?? 0;
+  return backgroundImages[index];
+}
 
 export default function ProyectoEvento({
   data,
@@ -20,68 +58,30 @@ export default function ProyectoEvento({
 }) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+  const backgroundImage = getBackgroundImage(data.title);
+
   return (
-    <main className="bg-black text-white">
+    <main className="min-h-screen bg-black text-white">
 
-      {/* INFORMACIÓN */}
+      {/* CABECERA */}
 
-      <section className="py-24 px-6">
+      <section className="bg-black px-6 pb-16">
 
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-16">
+        {/* ESPACIO REAL PARA SEPARAR EL NAVBAR DEL TÍTULO */}
 
-          <div className="lg:col-span-2">
+        <div className="h-[120px]" />
 
-            <h1 className="text-4xl md:text-5xl font-black mb-8">
+        <div className="max-w-7xl mx-auto">
+
+          <div className="max-w-5xl">
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.05] tracking-[-1px]">
               {data.title}
             </h1>
 
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="mt-5 text-sm md:text-base uppercase tracking-[5px] text-red-500 font-medium">
               {data.location}
             </p>
-
-            <h2 className="text-4xl font-black mb-8">
-              Sobre el evento
-            </h2>
-
-            <p className="text-gray-400 leading-9">
-              {data.description}
-            </p>
-
-          </div>
-
-          <div>
-
-            {data.artists && data.artists.length > 0 && (
-              <>
-                <h3 className="text-2xl font-bold mb-6">
-                  Artistas
-                </h3>
-
-                <ul className="space-y-3 text-gray-300 mb-12">
-                  {data.artists.map((artist) => (
-                    <li key={artist}>
-                      • {artist}
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-
-            {data.services && data.services.length > 0 && (
-              <>
-                <h3 className="text-2xl font-bold mb-6">
-                  Servicios realizados
-                </h3>
-
-                <ul className="space-y-3 text-gray-300">
-                  {data.services.map((service) => (
-                    <li key={service}>
-                      • {service}
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
 
           </div>
 
@@ -90,34 +90,49 @@ export default function ProyectoEvento({
       </section>
 
 
-      {/* GALERÍA */}
+      {/* GALERÍA + FOTO DE FONDO */}
 
-      <section className="pb-28 px-6">
+      <section className="relative overflow-hidden">
 
-        <div className="max-w-7xl mx-auto">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{
+            backgroundImage: `url("${backgroundImage}")`,
+          }}
+        />
 
-          <h2 className="text-4xl font-black mb-12">
-            Galería
-          </h2>
+        <div className="absolute inset-0 bg-black/25" />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/10 to-black/40" />
 
-            {data.images.map((image) => (
-              <button
-                key={image}
-                type="button"
-                onClick={() => setSelectedImage(image)}
-                className="group relative overflow-hidden rounded-2xl bg-neutral-900 cursor-zoom-in"
-              >
-                <img
-                  src={image}
-                  alt={data.title}
-                  className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+        <div className="relative z-10 px-6 py-24">
 
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-              </button>
-            ))}
+          <div className="max-w-7xl mx-auto">
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+              {data.images.map((image, index) => (
+
+                <button
+                  key={`${image}-${index}`}
+                  type="button"
+                  onClick={() => setSelectedImage(image)}
+                  className="group relative overflow-hidden bg-zinc-950 cursor-zoom-in text-left rounded-none shadow-2xl"
+                >
+
+                  <img
+                    src={image}
+                    alt={`${data.title} - fotografía ${index + 1}`}
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500 pointer-events-none" />
+
+                </button>
+
+              ))}
+
+            </div>
 
           </div>
 
@@ -128,25 +143,27 @@ export default function ProyectoEvento({
 
       {/* VOLVER */}
 
-      <section className="pb-28 text-center">
+      <section className="bg-black px-6 py-24 text-center">
 
         <Link
           href="/eventos"
-          className="inline-flex rounded-full bg-red-600 px-8 py-4 font-bold hover:bg-red-700 transition"
+          className="inline-flex items-center gap-4 border border-red-600 px-8 py-4 text-sm font-bold tracking-[3px] text-white hover:bg-red-600 transition-all duration-300"
         >
-          ← Volver a eventos
+          ← VOLVER A EVENTOS
         </Link>
 
       </section>
 
 
-      {/* VISOR DE IMAGEN AMPLIADA */}
+      {/* LIGHTBOX */}
 
       {selectedImage && (
+
         <div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-6"
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-6"
           onClick={() => setSelectedImage(null)}
         >
+
           <button
             type="button"
             onClick={() => setSelectedImage(null)}
@@ -159,10 +176,12 @@ export default function ProyectoEvento({
           <img
             src={selectedImage}
             alt={data.title}
-            className="max-w-full max-h-[90vh] object-contain rounded-xl"
+            className="max-w-full max-h-[90vh] object-contain"
             onClick={(event) => event.stopPropagation()}
           />
+
         </div>
+
       )}
 
     </main>

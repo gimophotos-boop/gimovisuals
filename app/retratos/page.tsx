@@ -1,99 +1,312 @@
-import Hero from "./components/Hero";
+"use client";
+
+import Navbar from "@/app/components/Navbar";
 import Servicios from "./components/Servicios";
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 
 const categorias = [
   {
-    titulo: "Sesiones en la playa",
-    descripcion: "Retratos realizados en playas y entornos costeros.",
-    imagen: "/assets/images/retratos/categorias/playa.jpg",
+    titulo: "Playa",
+    descripcion: "Retratos junto al mar, con luz natural y una estética fresca.",
     enlace: "/retratos/playa",
+    sesiones: [
+      "playa/itzi",
+      "playa/kelly",
+      "playa/lidia-playa",
+      "playa/nadia",
+      "playa/olga-verano",
+      "playa/paola",
+      "playa/rocio",
+    ],
   },
   {
-    titulo: "Sesiones en la naturaleza",
-    descripcion: "Bosques, montaña, campo y entornos naturales.",
-    imagen: "/assets/images/retratos/categorias/naturaleza.jpg",
+    titulo: "Naturaleza",
+    descripcion: "Bosques, montaña y espacios naturales convertidos en escenarios.",
     enlace: "/retratos/naturaleza",
+    sesiones: [
+      "naturaleza/adri-pueblo-mirador",
+      "naturaleza/andrea-bosque",
+      "naturaleza/andrea-naturaleza",
+      "naturaleza/andrea-parque",
+      "naturaleza/andrea-vias",
+      "naturaleza/esther",
+      "naturaleza/lidia-ermita",
+      "naturaleza/lidia-vias",
+      "naturaleza/lucia-naturaleza",
+      "naturaleza/marina-jardines",
+      "naturaleza/marina-lago",
+      "naturaleza/noa-ermita",
+      "naturaleza/olga-playa",
+      "naturaleza/olga-vias",
+    ],
   },
   {
-    titulo: "Sesiones urbanas",
-    descripcion: "Retratos con un estilo urbano, callejero y moderno.",
-    imagen: "/assets/images/retratos/categorias/urbano.jpg",
+    titulo: "Urbano",
+    descripcion: "Calles, arquitectura y escenarios industriales con personalidad.",
     enlace: "/retratos/urbano",
+    sesiones: [
+      "urbano/adri-urbano",
+      "urbano/andrea-poligono",
+      "urbano/andrea-urbana",
+      "urbano/laia-urbana",
+      "urbano/laura-ciudad",
+      "urbano/laura-industrial",
+      "urbano/lucia-parque",
+      "urbano/olga-atardecer",
+      "urbano/olga-urbana",
+    ],
   },
   {
     titulo: "Embarazo",
-    descripcion: "Sesiones de embarazo y maternidad.",
-    imagen: "/assets/images/retratos/categorias/embarazo.jpg",
+    descripcion: "Una etapa única convertida en recuerdos para toda la vida.",
     enlace: "/retratos/embarazo",
+    sesiones: [
+      "embarazo/lidia-emiliyan-leo",
+      "embarazo/lidia-emiliyan-miradores",
+      "embarazo/veronica-pareja-indara",
+      "embarazo/yaiza-juan-carlos",
+    ],
   },
   {
     titulo: "Familiar y pareja",
-    descripcion: "Sesiones para parejas, familias y momentos especiales.",
-    imagen: "/assets/images/retratos/categorias/familiar-pareja.jpg",
+    descripcion:
+      "Historias compartidas, conexiones y momentos que merecen ser recordados.",
     enlace: "/retratos/familiar-pareja",
+    sesiones: [
+      "familiar-pareja/andrea-laura",
+      "familiar-pareja/andrea-lidia-laura",
+      "familiar-pareja/andrea-natalia-lidia",
+      "familiar-pareja/mire-patri",
+      "familiar-pareja/senay-yaiza-juan-carlos",
+      "familiar-pareja/sofi-itzi",
+    ],
   },
   {
     titulo: "Lugares especiales",
-    descripcion: "Sesiones realizadas en escenarios únicos y especiales.",
-    imagen: "/assets/images/retratos/categorias/lugares-especiales.jpg",
+    descripcion: "Escenarios diferentes para sesiones con una personalidad única.",
     enlace: "/retratos/lugares-especiales",
+    sesiones: [
+      "lugares-especiales/adri-castillo",
+      "lugares-especiales/ana",
+      "lugares-especiales/ari-patrimonio",
+      "lugares-especiales/lucia-delta",
+      "lugares-especiales/lucia-patrimonio",
+      "lugares-especiales/lucia-vias",
+      "lugares-especiales/olga-cantera",
+      "lugares-especiales/olga-urbana",
+      "lugares-especiales/sofi",
+    ],
+  },
+  {
+    titulo: "Bebés",
+    descripcion:
+      "Los primeros meses, sus pequeños gestos y recuerdos irrepetibles.",
+    enlace: "/retratos/bebes",
+    sesiones: ["bebes/leo-3-meses"],
+  },
+  {
+    titulo: "Colaboraciones",
+    descripcion:
+      "Proyectos fotográficos realizados junto a marcas y profesionales.",
+    enlace: "/retratos/colaboraciones",
+    sesiones: ["colaboraciones/adri-kia", "colaboraciones/paula-peugeot"],
   },
 ];
 
-export default function RetratosPage() {
+function crearFotos(sesiones: string[]) {
+  return sesiones.flatMap((sesion) =>
+    Array.from(
+      { length: 12 },
+      (_, index) =>
+        `/assets/images/retratos/${sesion}/${index + 1}.jpg`
+    )
+  );
+}
+
+function mezclar<T>(array: T[]) {
+  const resultado = [...array];
+
+  for (let i = resultado.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [resultado[i], resultado[j]] = [resultado[j], resultado[i]];
+  }
+
+  return resultado;
+}
+
+function FondoFotos({
+  fotos,
+  intervalo = 5000,
+  oscurecer = false,
+}: {
+  fotos: string[];
+  intervalo?: number;
+  oscurecer?: boolean;
+}) {
+  const [indice, setIndice] = useState(0);
+
+  useEffect(() => {
+    if (fotos.length <= 1) return;
+
+    const timer = setInterval(() => {
+      setIndice((actual) => (actual + 1) % fotos.length);
+    }, intervalo);
+
+    return () => clearInterval(timer);
+  }, [fotos, intervalo]);
+
+  if (!fotos.length) return null;
+
   return (
-    <main className="bg-black text-white">
-      <Hero />
+    <div className="absolute inset-0 overflow-hidden bg-zinc-950">
+      {fotos.map((foto, index) => (
+        <div
+          key={`${foto}-${index}`}
+          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${
+            index === indice ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <img
+            src={foto}
+            alt=""
+            className="h-full w-full object-contain"
+          />
+        </div>
+      ))}
 
-      <Servicios />
+      {oscurecer && (
+        <div className="absolute inset-0 bg-black/50" />
+      )}
+    </div>
+  );
+}
 
-      <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="text-center mb-16">
-          <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-6">
-            PORTFOLIO
+function TarjetaCategoria({
+  categoria,
+}: {
+  categoria: (typeof categorias)[number];
+}) {
+  const fotos = useMemo(() => {
+    return mezclar(crearFotos(categoria.sesiones));
+  }, [categoria.sesiones]);
+
+  return (
+    <Link
+      href={categoria.enlace}
+      className="group relative block overflow-hidden rounded-[28px] border border-zinc-800 bg-zinc-950 shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:border-red-600"
+    >
+      <div className="relative aspect-[4/5] overflow-hidden bg-zinc-950">
+
+        <FondoFotos
+          fotos={fotos}
+          intervalo={5000}
+          oscurecer={false}
+        />
+
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+
+        <div className="absolute bottom-0 left-0 right-0 p-7 md:p-8">
+          <h3 className="text-3xl font-black md:text-4xl">
+            {categoria.titulo}
+          </h3>
+
+          <p className="mt-3 max-w-md text-sm leading-6 text-white md:text-base">
+            {categoria.descripcion}
           </p>
 
-          <h2 className="text-5xl md:text-7xl font-black">
-            Mis retratos
-          </h2>
-
-          <p className="mt-6 text-gray-400 max-w-2xl mx-auto text-lg">
-            Explora las diferentes sesiones y estilos de fotografía de retrato.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {categorias.map((categoria) => (
-            <a
-              key={categoria.enlace}
-              href={categoria.enlace}
-              className="group relative overflow-hidden rounded-[28px] aspect-[4/5] bg-zinc-900"
-            >
-              <img
-                src={categoria.imagen}
-                alt={categoria.titulo}
-                className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
-              />
+      </div>
+    </Link>
+  );
+}
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+export default function RetratosPage() {
+  const backgroundImages = useMemo(() => {
+    const todasLasFotos = categorias.flatMap((categoria) =>
+      crearFotos(categoria.sesiones)
+    );
 
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <h3 className="text-3xl font-black">
-                  {categoria.titulo}
-                </h3>
+    return mezclar(todasLasFotos);
+  }, []);
 
-                <p className="mt-3 text-gray-300">
-                  {categoria.descripcion}
-                </p>
+  return (
+    <main className="relative min-h-screen overflow-hidden bg-black text-white">
+      <Navbar />
 
-                <span className="inline-block mt-6 text-red-500 font-semibold">
-                  Ver sesiones →
-                </span>
-              </div>
-            </a>
-          ))}
+      <div className="fixed inset-0 z-0 pointer-events-none bg-black">
+        <FondoFotos
+          fotos={backgroundImages}
+          intervalo={4500}
+          oscurecer={true}
+        />
+      </div>
+
+      
+      <section className="relative z-10 px-6 pb-32 pt-[680px] md:pb-40 md:pt-[740px]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(127,29,29,0.22),transparent_45%)]" />
+
+        <div className="relative z-10 mx-auto max-w-6xl translate-y-32 text-center">
+          <p className="mb-5 text-sm font-semibold uppercase tracking-[8px] text-red-500">
+            GIMOVISUALS · RETRATOS
+          </p>
+
+          <h1 className="relative top-[60px] mx-auto max-w-5xl text-5xl font-black leading-[0.98] tracking-[-2px] md:text-7xl lg:text-8xl">
+            Fotografías que
+            <span className="block text-white">cuentan una historia.</span>
+          </h1>
+
+          <p className="relative top-[100px] mx-auto mt-8 max-w-2xl text-lg leading-8 text-zinc-400 md:text-xl">
+            Sesiones naturales, elegantes y auténticas para convertir momentos,
+            personas y lugares en recuerdos que permanecen.
+          </p>
         </div>
       </section>
+
+      <section className="relative z-10 px-6 pb-36 pt-[220px] md:pb-44 md:pt-[280px]">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 translate-y-[320px] text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[5px] text-red-500">
+              PORTFOLIO
+            </p>
+
+            <h2 className="text-3xl font-black md:text-4xl">
+              Explora mis sesiones
+            </h2>
+          </div>
+
+          <div className="relative top-[400px] mb-[400px] grid grid-cols-1 gap-8 md:top-[400px] md:mb-[400px] md:grid-cols-2">
+            {categorias.map((categoria) => (
+              <TarjetaCategoria
+                key={categoria.enlace}
+                categoria={categoria}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="h-96 md:h-[500px]" />
+
+      <section className="relative z-10 mt-0 border-y border-zinc-900 bg-zinc-950/90 px-6 py-20 md:mt-40 md:py-24">
+        <div className="mx-auto flex w-full flex-col items-center text-center">
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[5px] text-red-500">
+            TU HISTORIA
+          </p>
+
+          <h2 className="text-2xl font-black leading-tight md:text-4xl">
+            Una sesión puede ser mucho más que una fotografía.
+          </h2>
+
+          <p className="mx-auto mt-5 w-full max-w-2xl text-center text-sm leading-7 text-zinc-400 md:text-base">
+            Busco crear imágenes que tengan personalidad, emoción y significado,
+            adaptando cada sesión a cada persona y a cada historia.
+          </p>
+        </div>
+      </section>
+
+      <Servicios />
     </main>
   );
 }

@@ -24,43 +24,44 @@ export default function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="overflow-hidden rounded-[24px] border border-zinc-800 bg-zinc-950"
+      className="group overflow-hidden rounded-[24px] border border-zinc-800 bg-zinc-950 hover:border-red-600 transition-all duration-500"
     >
-      <div className="aspect-video overflow-hidden bg-black">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="w-full h-full object-cover"
-        >
-          <source src={video} type="video/mp4" />
-        </video>
-      </div>
+      <Link href={href} className="block">
 
-      <div className="p-6">
+        <div className="aspect-video overflow-hidden bg-black">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          >
+            <source src={video} type="video/mp4" />
+          </video>
+        </div>
 
-        <p className="mb-2 uppercase tracking-[3px] text-sm text-red-500 font-semibold">
-          {location}
-        </p>
+        <div className="p-6">
 
-        <h2 className="mb-3 text-2xl font-black">
-          {title}
-        </h2>
+          <p className="mb-2 uppercase tracking-[3px] text-sm text-red-500 font-semibold">
+            {location}
+          </p>
 
-        <p className="mb-6 text-sm text-gray-400 leading-6">
-          {description}
-        </p>
+          <h2 className="mb-3 text-2xl font-black group-hover:text-red-500 transition-colors duration-300">
+            {title}
+          </h2>
 
-        <Link
-          href={href}
-          className="inline-flex rounded-full bg-red-600 px-6 py-3 text-sm font-semibold hover:bg-red-700 transition"
-        >
-          Ver proyecto
-        </Link>
+          <p className="mb-6 text-sm text-gray-400 leading-6">
+            {description}
+          </p>
 
-      </div>
+          <span className="inline-flex rounded-full border border-red-600 px-6 py-3 text-sm font-semibold text-white group-hover:bg-red-600 transition-all duration-300">
+            Ver proyecto →
+          </span>
+
+        </div>
+
+      </Link>
     </motion.div>
   );
 }

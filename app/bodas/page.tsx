@@ -1,7 +1,15 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
+import Navbar from "@/app/components/Navbar";
 import Link from "next/link";
-import { motion } from "framer-motion";
+
+const backgroundImages = [
+  "/assets/images/bodas/juan-carlos-yaiza/1.jpg",
+  "/assets/images/bodas/brian-marina/1.jpg",
+  "/assets/images/bodas/comunion-rosa/1.jpg",
+];
 
 const proyectos = [
   {
@@ -28,166 +36,130 @@ const proyectos = [
 ];
 
 export default function BodasPage() {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) =>
+        prev === backgroundImages.length - 1 ? 0 : prev + 1
+      );
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <main>
+    <main className="relative min-h-screen bg-black text-white">
 
-      <section className="py-20 px-6">
+      <Navbar />
+
+      {/* FONDOS ROTATIVOS */}
+
+      {backgroundImages.map((image, index) => (
+        <div
+          key={image}
+          className={`fixed inset-0 bg-cover bg-center bg-fixed transition-opacity duration-1000 ${
+            index === currentImage ? "opacity-50" : "opacity-0"
+          }`}
+          style={{
+            backgroundImage: `url("${image}")`,
+          }}
+        />
+      ))}
+
+      {/* DEGRADADO */}
+
+      <div className="fixed inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black" />
+
+      {/* CONTENIDO */}
+
+      <div className="relative z-10 pt-[340px] pb-[300px] px-6">
+
         <div className="max-w-7xl mx-auto">
 
-          <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-6">
-            BODAS
-          </p>
+          {/* CABECERA */}
 
-          <h1 className="text-5xl md:text-7xl font-black mb-8">
-            Historias que permanecen
-          </h1>
+          <div className="text-center mb-32 transform translate-y-[100px]">
 
-          <p className="max-w-3xl text-xl text-gray-400 leading-9">
-            Fotografía de bodas y celebraciones para conservar cada momento,
-            cada emoción y cada recuerdo.
-          </p>
+            <p className="uppercase tracking-[6px] text-red-500 font-medium text-[17px] mb-4">
+              BODAS
+            </p>
 
-        </div>
-      </section>
+            <h1 className="text-[58px] md:text-[72px] leading-[1.04] font-black tracking-[-1.5px]">
+              Fotografía y vídeo para recordar
+              <br />
+              toda la vida
+            </h1>
 
-      <section className="py-12 px-6">
-        <div className="max-w-7xl mx-auto">
-
-          <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-6">
-            SERVICIOS
-          </p>
-
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
-            Qué ofrecemos
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-            <div className="rounded-[30px] border border-zinc-800 bg-zinc-950 p-8">
-              <h3 className="text-2xl font-black mb-4">
-                Fotografía de boda
-              </h3>
-
-              <p className="text-gray-400 leading-7">
-                Capturamos cada momento de forma natural, elegante y llena de
-                emoción.
-              </p>
-            </div>
-
-            <div className="rounded-[30px] border border-zinc-800 bg-zinc-950 p-8">
-              <h3 className="text-2xl font-black mb-4">
-                Vídeo cinematográfico
-              </h3>
-
-              <p className="text-gray-400 leading-7">
-                Películas de boda con un estilo moderno para revivir vuestro
-                día una y otra vez.
-              </p>
-            </div>
-
-            <div className="rounded-[30px] border border-zinc-800 bg-zinc-950 p-8">
-              <h3 className="text-2xl font-black mb-4">
-                Dron
-              </h3>
-
-              <p className="text-gray-400 leading-7">
-                Imágenes aéreas espectaculares para completar el recuerdo de
-                vuestro gran día.
-              </p>
-            </div>
-
-            <div className="rounded-[30px] border border-zinc-800 bg-zinc-950 p-8">
-              <h3 className="text-2xl font-black mb-4">
-                Entrega premium
-              </h3>
-
-              <p className="text-gray-400 leading-7">
-                Todo el material editado con máxima calidad y preparado para
-                compartir y conservar.
-              </p>
-            </div>
+            <p
+  className="relative top-[50px] mt-10 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-8 w-full block"
+  style={{ textAlign: "center", marginLeft: "auto", marginRight: "auto" }}
+>
+              Capturamos cada emoción, cada mirada y cada detalle para que podáis revivir
+              vuestra historia una y otra vez.
+            </p>
 
           </div>
 
-        </div>
-      </section>
 
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
+          {/* PROYECTOS */}
 
-          <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-6">
-            TRABAJOS
-          </p>
+          <section className="mt-[80px] pb-[300px]">
 
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
-            Algunas de nuestras historias
-          </h2>
+            <div className="text-center mb-28 transform translate-y-[80px]">
 
-          <p className="max-w-3xl text-lg text-gray-400 leading-8 mb-14">
-            Descubre algunos de los trabajos que hemos realizado.
-          </p>
+              <h2 className="relative top-[90px] text-[52px] md:text-[58px] leading-[1.04] font-black tracking-[-1.5px]">
+                Nuestras historias
+              </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
 
-            {proyectos.map((proyecto, index) => (
-              <motion.div
-                key={proyecto.href}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.08,
-                }}
-              >
+            <div className="relative top-[250px] grid grid-cols-1 md:grid-cols-2 gap-10">
 
-                <div className="group overflow-hidden rounded-[30px] border border-zinc-800 bg-zinc-950 transition duration-500 hover:border-red-600">
+              {proyectos.map((proyecto) => (
 
-                  <div className="aspect-[4/3] bg-zinc-900 overflow-hidden">
+                <Link
+                  key={proyecto.href}
+                  href={proyecto.href}
+                  className="group block"
+                >
+
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-black/60 border border-zinc-800 group-hover:border-red-600 transition-all duration-500">
 
                     <video
-                      className="w-full h-full object-cover"
-                      src={proyecto.video}
                       autoPlay
                       muted
                       loop
                       playsInline
-                    />
+                      preload="metadata"
+                      className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                    >
+                      <source src={proyecto.video} type="video/mp4" />
+                    </video>
 
-                  </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
 
-                  <div className="p-8">
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
 
-                    <h3 className="text-2xl font-black leading-tight group-hover:text-red-500 transition">
-                      {proyecto.title}
-                    </h3>
-
-                    <p className="text-gray-400 leading-7 mt-4">
-                      {proyecto.description}
-                    </p>
-
-                    <div className="mt-6">
-
-                      <Link
-                        href={proyecto.href}
-                        className="inline-flex rounded-full bg-red-600 px-7 py-3 font-semibold transition hover:bg-red-700"
-                      >
-                        Ver proyecto
-                      </Link>
+                      <h3 className="text-xl md:text-2xl font-black leading-tight group-hover:text-red-500 transition-colors duration-300">
+                        {proyecto.title}
+                      </h3>
 
                     </div>
 
                   </div>
 
-                </div>
+                </Link>
 
-              </motion.div>
-            ))}
+              ))}
 
-          </div>
+            </div>
+
+          </section>
 
         </div>
-      </section>
+
+      </div>
 
     </main>
   );

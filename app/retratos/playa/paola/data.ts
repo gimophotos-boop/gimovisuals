@@ -1,6 +1,6 @@
 export const project = {
-  title: "Sesión de playa con Paola",
-  description: "Retrato natural en un entorno de playa.",
+  title: "Paola",
+  description: "Una sesión junto al mar jugando con el azul y el verde del entorno.",
   images: Array.from(
     { length: 12 },
     (_, i) => `/assets/images/retratos/playa/paola/${i + 1}.jpg`

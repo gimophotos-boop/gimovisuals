@@ -19,36 +19,36 @@ export default function Servicios() {
   ];
 
   return (
-    <section className="bg-black py-32">
+    <section className="bg-black py-20 md:py-24">
 
       <div className="max-w-7xl mx-auto px-6">
 
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 md:mb-14">
 
-          <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-6">
+          <p className="uppercase tracking-[5px] text-red-500 text-[11px] font-semibold mb-4">
             SERVICIOS
           </p>
 
-          <h2 className="text-5xl md:text-7xl font-black text-white mb-8">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-5">
             Qué ofrecemos
           </h2>
 
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-5 md:gap-6">
 
           {servicios.map((servicio) => (
 
             <div
               key={servicio.titulo}
-              className="rounded-[30px] border border-white/10 bg-zinc-950 p-10"
+              className="rounded-[24px] border border-white/10 bg-zinc-950 p-7 md:p-8"
             >
 
-              <h3 className="text-3xl font-bold text-white mb-6">
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                 {servicio.titulo}
               </h3>
 
-              <p className="text-gray-400 leading-8">
+              <p className="text-sm md:text-base text-gray-400 leading-6">
                 {servicio.texto}
               </p>
 

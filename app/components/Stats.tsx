@@ -4,61 +4,53 @@ import { motion } from "framer-motion";
 
 const stats = [
   {
-    number: "+200",
-    title: "Proyectos realizados",
+    value: "+30.000",
+    label: "Seguidores",
   },
   {
-    number: "+50",
-    title: "Clientes satisfechos",
+    value: "+2000",
+    label: "Proyectos",
   },
   {
-    number: "100%",
-    title: "Compromiso",
+    value: "+400",
+    label: "Clientes",
   },
   {
-    number: "24/7",
-    title: "Disponibilidad",
+    value: "100%",
+    label: "Compromiso",
+  },
+  {
+    value: "24/7",
+    label: "Disponibilidad",
   },
 ];
 
 export default function Stats() {
   return (
-    <section className="bg-black py-28">
+    <section className="bg-black text-white py-20 px-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-10">
+        {stats.map((stat, index) => (
+          <motion.div
+            key={stat.label}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.6,
+              delay: index * 0.08,
+            }}
+            className="text-center"
+          >
+            <div className="text-4xl md:text-5xl font-black">
+              {stat.value}
+            </div>
 
-      <div className="max-w-7xl mx-auto px-6">
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
-
-          {stats.map((item, index) => (
-
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                delay: index * 0.15,
-                duration: 0.7,
-              }}
-              className="rounded-3xl border border-zinc-800 bg-zinc-950 p-10 text-center hover:border-red-600 transition-all duration-300"
-            >
-
-              <h2 className="text-5xl font-black text-red-600 mb-4">
-                {item.number}
-              </h2>
-
-              <p className="text-gray-300 text-lg">
-                {item.title}
-              </p>
-
-            </motion.div>
-
-          ))}
-
-        </div>
-
+            <div className="mt-3 text-lg text-gray-300">
+              {stat.label}
+            </div>
+          </motion.div>
+        ))}
       </div>
-
     </section>
   );
 }

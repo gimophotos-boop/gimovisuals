@@ -12,27 +12,27 @@ export default function Gallery({
   onImageClick,
 }: GalleryProps) {
   return (
-    <div className="columns-1 md:columns-2 xl:columns-3 gap-6 space-y-6">
+    <div className="columns-1 md:columns-2 lg:columns-3 [column-gap:32px] [column-fill:balance] space-y-8">
 
       {images.map((image, index) => (
 
         <motion.div
           key={image}
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{
             duration: 0.5,
-            delay: index * 0.05,
+            delay: index * 0.04,
           }}
-          className="overflow-hidden rounded-3xl cursor-pointer break-inside-avoid"
+          className="rounded-2xl cursor-pointer break-inside-avoid mb-10"
           onClick={() => onImageClick(index)}
         >
 
           <img
             src={image}
             alt={`Imagen ${index + 1}`}
-            className="w-full rounded-3xl transition duration-500 hover:scale-105"
+            className="block w-full h-auto max-w-full rounded-2xl transition duration-700"
           />
 
         </motion.div>

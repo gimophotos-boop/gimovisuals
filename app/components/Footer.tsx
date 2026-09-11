@@ -1,111 +1,130 @@
 export default function Footer() {
+  const services = [
+    { name: "Automoción", href: "/automocion" },
+    { name: "Inmobiliarias", href: "/inmobiliarias" },
+    { name: "Eventos", href: "/eventos" },
+    { name: "Deporte", href: "/deporte" },
+    { name: "Bodas", href: "/bodas" },
+    { name: "Retratos", href: "/retratos" },
+  ];
+
   return (
     <footer className="border-t border-zinc-800 bg-black">
+      <div className="max-w-7xl mx-auto px-6 py-24">
 
-      <div className="max-w-7xl mx-auto px-6 py-16">
-
-        <div className="grid md:grid-cols-4 gap-12">
+        <div className="grid md:grid-cols-3 gap-16">
 
           <div>
+            <a href="/" className="inline-block">
+              <img
+                src="/assets/logo/logo.png"
+                alt="GIMOVISUALS"
+                className="h-32 md:h-40 w-auto mb-8"
+              />
+            </a>
 
-            <img
-              src="/assets/logo/logo.png"
-              alt="GIMOVISUALS"
-              className="h-14 mb-6"
-            />
-
-            <p className="text-gray-400 leading-8">
+            <p className="text-gray-400 leading-8 max-w-md">
               Fotografía, vídeo y dron profesional para empresas,
-              inmobiliarias, automoción, deporte y eventos.
+              marcas y profesionales que quieren destacar.
             </p>
-
           </div>
 
           <div>
-
-            <h3 className="text-white font-bold mb-5">
+            <h3 className="text-white font-bold text-lg mb-7">
               Servicios
             </h3>
 
-            <ul className="space-y-3 text-gray-400">
-
-              <li>Automoción</li>
-              <li>Inmobiliarias</li>
-              <li>Empresas</li>
-              <li>Retratos</li>
-              <li>Eventos</li>
-              <li>Dron</li>
-
+            <ul className="space-y-4">
+              {services.map((service) => (
+                <li key={service.href}>
+                  <a
+                    href={service.href}
+                    className="text-gray-400 hover:text-red-500 transition"
+                  >
+                    {service.name}
+                  </a>
+                </li>
+              ))}
             </ul>
-
           </div>
 
           <div>
-
-            <h3 className="text-white font-bold mb-5">
+            <h3 className="text-white font-bold text-lg mb-7">
               Contacto
             </h3>
 
-            <ul className="space-y-3 text-gray-400">
+            <ul className="space-y-5">
+              <li>
+                <a
+                  href="mailto:gimophotos@gmail.com"
+                  className="text-gray-400 hover:text-red-500 transition"
+                >
+                  gimophotos@gmail.com
+                </a>
+              </li>
 
-              <li>📞 +34 603 609 367</li>
-              <li>✉️ contacto@gimovisuals.es</li>
-              <li>📍 Tarragona</li>
+              <li>
+                <a
+                  href="https://wa.me/34603609367"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-red-500 transition"
+                >
+                  WhatsApp
+                </a>
+              </li>
 
+              <li>
+                <a
+                  href="https://instagram.com/gimovisuals"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-red-500 transition"
+                >
+                  @gimovisuals
+                </a>
+              </li>
             </ul>
-
           </div>
 
-          <div>
+        </div>
 
-            <h3 className="text-white font-bold mb-5">
-              Redes Sociales
-            </h3>
+        <div className="mt-20 border-t border-zinc-800 pt-8">
 
-            <div className="space-y-3">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-5">
 
+            <p className="text-gray-500 text-sm text-center md:text-left">
+              © {new Date().getFullYear()} GIMOVISUALS · Todos los derechos reservados.
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-6 text-sm">
               <a
-                href="https://instagram.com/gimovisuals"
-                target="_blank"
-                className="block text-gray-400 hover:text-red-500 transition"
+                href="/aviso-legal"
+                className="text-gray-500 hover:text-white transition"
               >
-                Instagram
+                Aviso legal
               </a>
 
               <a
-                href="https://facebook.com"
-                target="_blank"
-                className="block text-gray-400 hover:text-red-500 transition"
+                href="/privacidad"
+                className="text-gray-500 hover:text-white transition"
               >
-                Facebook
+                Privacidad
               </a>
 
               <a
-                href="https://tiktok.com"
-                target="_blank"
-                className="block text-gray-400 hover:text-red-500 transition"
+                href="/cookies"
+                className="text-gray-500 hover:text-white transition"
               >
-                TikTok
+                Cookies
               </a>
-
             </div>
 
           </div>
 
         </div>
 
-        <div className="mt-16 border-t border-zinc-800 pt-8 text-center">
-
-          <p className="text-gray-500">
-
-            © {new Date().getFullYear()} GIMOVISUALS · Todos los derechos reservados.
-
-          </p>
-
-        </div>
-
       </div>
-
     </footer>
   );
 }

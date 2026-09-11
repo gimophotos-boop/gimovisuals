@@ -1,221 +1,189 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+
+function EmailIcon() {
+  return (
+    <svg
+      width="26"
+      height="26"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3 7 9 6 9-6" />
+    </svg>
+  );
+}
+
+function WhatsAppIcon() {
+  return (
+    <svg
+      width="26"
+      height="26"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20.5 11.5a8.5 8.5 0 0 1-12.7 7.4L4 20l1.1-3.6A8.5 8.5 0 1 1 20.5 11.5Z" />
+      <path d="M8.5 8.5c.3-.5.6-.5 1-.5h.4c.3 0 .5.1.6.5l.6 1.5c.1.3.1.5-.1.8l-.5.6c-.2.2-.2.4 0 .7.5.8 1.2 1.5 2 2 .3.2.5.2.7 0l.6-.5c.2-.2.5-.2.8-.1l1.5.6c.3.1.5.3.5.6v.4c0 .4-.1.7-.5 1-.4.3-1 .4-1.4.3-1.1-.3-2.4-1-3.7-2.3-1.3-1.3-2-2.6-2.3-3.7-.1-.4 0-1 .3-1.4Z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg
+      width="26"
+      height="26"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function LocationIcon() {
+  return (
+    <svg
+      width="26"
+      height="26"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </svg>
+  );
+}
 
 export default function Contact() {
-  const [form, setForm] = useState({
-    nombre: "",
-    telefono: "",
-    email: "",
-    servicio: "",
-    mensaje: "",
-  });
-
-  const actualizar = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const whatsapp = () => {
-    const texto = `Hola, soy ${form.nombre}
-
-Servicio: ${form.servicio}
-
-Teléfono: ${form.telefono}
-
-Email: ${form.email}
-
-Mensaje:
-${form.mensaje}`;
-
-    window.open(
-      `https://wa.me/34603609367?text=${encodeURIComponent(texto)}`,
-      "_blank"
-    );
-  };
-
-  const email = () => {
-    const asunto = "Solicitud desde GIMOVISUALS";
-
-    const cuerpo = `Nombre: ${form.nombre}
-
-Servicio: ${form.servicio}
-
-Teléfono: ${form.telefono}
-
-Email: ${form.email}
-
-Mensaje:
-
-${form.mensaje}`;
-
-    window.location.href =
-      `mailto:gimophotos@gmail.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
-  };
+  const contacts = [
+    {
+      icon: <EmailIcon />,
+      title: "Email",
+      value: "gimophotos@gmail.com",
+      href: "mailto:gimophotos@gmail.com",
+    },
+    {
+      icon: <WhatsAppIcon />,
+      title: "WhatsApp",
+      value: "+34 603 609 367",
+      href: "https://wa.me/34603609367",
+    },
+    {
+      icon: <InstagramIcon />,
+      title: "Instagram",
+      value: "@gimovisuals",
+      href: "https://instagram.com/gimovisuals",
+    },
+  ];
 
   return (
     <section
-      id="contact"
-      className="relative overflow-hidden py-40 px-6 bg-gradient-to-b from-zinc-950 to-black"
+      id="contacto"
+      className="relative overflow-hidden py-32 px-6 bg-gradient-to-b from-zinc-950 to-black"
     >
-
       <div className="absolute left-1/2 top-0 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-red-600/10 blur-[180px]" />
 
       <div className="relative max-w-7xl mx-auto">
 
-        <div className="text-center mb-24">
+        <div className="text-center mb-16">
 
           <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-5">
             CONTACTO
           </p>
 
-          <h2 className="text-5xl md:text-7xl font-black text-white mb-8">
+          <h2 className="text-5xl md:text-7xl font-black text-white mb-6">
             ¿Hablamos?
           </h2>
 
           <p className="text-gray-400 text-xl max-w-3xl mx-auto leading-9">
-            Cuéntame tu proyecto y elige si quieres enviarme el mensaje por
-            WhatsApp o por Email.
+            Si tienes un proyecto en mente, puedes contactar conmigo
+            directamente a través de cualquiera de estos canales.
           </p>
 
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-20">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
-          <div className="space-y-6">
+          {contacts.map((item, index) => (
+            <motion.a
+              key={item.title}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.08,
+              }}
+              whileHover={{ y: -6 }}
+              className="group flex items-center gap-4 rounded-[28px] border border-zinc-800 bg-zinc-900/70 backdrop-blur-xl px-5 py-5 transition duration-500 hover:border-red-600"
+            >
 
-            {[
-              {
-                icon: "✉️",
-                title: "Email",
-                value: "gimophotos@gmail.com",
-              },
-              {
-                icon: "📞",
-                title: "Teléfono",
-                value: "+34 603 609 367",
-              },
-              {
-                icon: "📷",
-                title: "Instagram",
-                value: "@gimovisuals",
-              },
-              {
-                icon: "📍",
-                title: "Zona de trabajo",
-                value: "Tarragona · Barcelona · Toda España",
-              },
-            ].map((item) => (
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-red-600 text-white">
+                {item.icon}
+              </div>
 
-              <motion.div
-                key={item.title}
-                whileHover={{
-                  x: 8,
-                  scale: 1.02,
-                }}
-                className="flex items-center gap-6 rounded-[32px] border border-zinc-800 bg-zinc-900/70 backdrop-blur-xl p-8"
-              >
+              <div className="min-w-0">
 
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-red-600 text-3xl">
-                  {item.icon}
-                </div>
+                <p className="text-red-500 font-bold mb-1">
+                  {item.title}
+                </p>
 
-                <div>
+                <p className="text-white text-base break-all group-hover:text-red-400 transition">
+                  {item.value}
+                </p>
 
-                  <p className="text-red-500 font-bold mb-1">
-                    {item.title}
-                  </p>
+              </div>
 
-                  <p className="text-white text-lg">
-                    {item.value}
-                  </p>
-
-                </div>
-
-              </motion.div>
-
-            ))}
-
-          </div>
+            </motion.a>
+          ))}
 
           <motion.div
-            whileHover={{ scale: 1.01 }}
-            className="rounded-[40px] border border-white/10 bg-white/5 backdrop-blur-2xl p-10 shadow-[0_0_80px_rgba(220,38,38,.12)] space-y-6"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.6,
+              delay: 0.24,
+            }}
+            className="flex items-center gap-4 rounded-[28px] border border-zinc-800 bg-zinc-900/70 backdrop-blur-xl px-5 py-5 transition duration-500 hover:border-red-600"
           >
 
-            <input
-              name="nombre"
-              value={form.nombre}
-              onChange={actualizar}
-              type="text"
-              placeholder="Nombre"
-              className="w-full rounded-2xl bg-black/50 border border-zinc-700 px-6 py-5 text-white outline-none focus:border-red-600 transition"
-            />
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-red-600 text-white">
+              <LocationIcon />
+            </div>
 
-            <input
-              name="telefono"
-              value={form.telefono}
-              onChange={actualizar}
-              type="tel"
-              placeholder="Teléfono"
-              className="w-full rounded-2xl bg-black/50 border border-zinc-700 px-6 py-5 text-white outline-none focus:border-red-600 transition"
-            />
+            <div>
+              <p className="text-red-500 font-bold mb-1">
+                Ubicación
+              </p>
 
-            <input
-              name="email"
-              value={form.email}
-              onChange={actualizar}
-              type="email"
-              placeholder="Correo electrónico"
-              className="w-full rounded-2xl bg-black/50 border border-zinc-700 px-6 py-5 text-white outline-none focus:border-red-600 transition"
-            />
-
-            <select
-              name="servicio"
-              value={form.servicio}
-              onChange={actualizar}
-              className="w-full rounded-2xl bg-black/50 border border-zinc-700 px-6 py-5 text-white outline-none focus:border-red-600 transition"
-            >
-              <option value="">Selecciona un servicio</option>
-              <option>Automoción</option>
-              <option>Inmobiliarias</option>
-              <option>Bodas</option>
-              <option>Retratos</option>
-              <option>Deporte</option>
-              <option>Negocios</option>
-            </select>
-                        <textarea
-              name="mensaje"
-              value={form.mensaje}
-              onChange={actualizar}
-              rows={7}
-              placeholder="Cuéntame tu proyecto..."
-              className="w-full resize-none rounded-2xl bg-black/50 border border-zinc-700 px-6 py-5 text-white outline-none focus:border-red-600 transition"
-            />
-
-            <div className="grid md:grid-cols-2 gap-4">
-
-              <button
-                type="button"
-                onClick={whatsapp}
-                className="rounded-2xl bg-green-600 hover:bg-green-700 transition py-5 text-lg font-bold text-white"
-              >
-                🟢 Enviar por WhatsApp
-              </button>
-
-              <button
-                type="button"
-                onClick={email}
-                className="rounded-2xl bg-red-600 hover:bg-red-700 transition py-5 text-lg font-bold text-white"
-              >
-                🔴 Enviar por Email
-              </button>
-
+              <p className="text-white text-base">
+                Tarragona
+              </p>
             </div>
 
           </motion.div>
@@ -223,7 +191,6 @@ ${form.mensaje}`;
         </div>
 
       </div>
-
     </section>
   );
 }

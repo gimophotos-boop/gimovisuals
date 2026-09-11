@@ -1,6 +1,6 @@
 export const project = {
-  title: "Sesión con Lucia en un lugar Patrimonio de la Humanidad",
-  description: "Una sesión de retrato en un entorno único y especial.",
+  title: "Lucía",
+  description: "Historia, naturaleza y una arquitectura con un carácter único.",
   images: Array.from(
     { length: 12 },
     (_, i) => `/assets/images/retratos/lugares-especiales/lucia-patrimonio/${i + 1}.jpg`

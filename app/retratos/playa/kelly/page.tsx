@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import Navbar from "@/app/components/Navbar";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { project } from "./data";
@@ -8,9 +9,24 @@ import { project } from "./data";
 import Gallery from "@/app/components/gallery/Gallery";
 import Lightbox from "@/app/components/gallery/Lightbox";
 
+
 export default function KellyPage() {
   const [open, setOpen] = useState(false);
-  const [current, setCurrent] = useState(0);
+  const backgroundImages = Array.from({ length: 12 }, (_, i) =>
+  `/assets/images/retratos/playa/kelly/${i + 1}.jpg`
+);
+
+const [currentBackground, setCurrentBackground] = useState(0);
+
+useEffect(() => {
+  const intervalo = setInterval(() => {
+    setCurrentBackground((prev) => (prev + 1) % backgroundImages.length);
+  }, 4000);
+
+  return () => clearInterval(intervalo);
+}, []);
+
+const [current, setCurrent] = useState(0);
 
   function openImage(index: number) {
     setCurrent(index);
@@ -30,37 +46,41 @@ export default function KellyPage() {
   }
 
   return (
-    <main className="min-h-screen bg-black text-white">
-      <div className="max-w-7xl mx-auto px-6 py-20">
+    <main className="relative min-h-[1800px] overflow-hidden text-white">
 
-        <Link
-          href="/retratos/playa"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition mb-10"
-        >
-          ← Volver a Playa
-        </Link>
+      <Navbar />
 
-        <p className="uppercase tracking-[8px] text-red-500 font-semibold mb-6">
+      <div
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 pointer-events-none opacity-50"
+        style={{
+          backgroundImage: `url("${backgroundImages[currentBackground]}")`,
+        }}
+      />
+
+      <div className="fixed inset-0 z-0 bg-black/50 pointer-events-none" />
+
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-32">
+
+        <p className="relative top-[110px] uppercase tracking-[6px] text-red-500 font-medium text-[17px] mb-4">
           RETRATOS
         </p>
 
-        <h1 className="text-5xl md:text-7xl font-black mb-8">
+        <h1 className="relative top-[130px] text-[58px] md:text-[74px] leading-[1.04] font-black tracking-[-1.5px] mb-6">
           {project.title}
         </h1>
 
-        <p className="max-w-3xl text-xl text-gray-400 leading-9 mb-20">
+        <p className="relative top-[150px] max-w-3xl text-lg md:text-xl text-gray-300 leading-8 mb-16">
           {project.description}
         </p>
 
         <section>
-          <h2 className="text-3xl font-bold mb-8">
-            Fotografías
-          </h2>
-
-          <Gallery
-            images={project.images}
-            onImageClick={openImage}
-          />
+          <div className="relative top-[300px] max-w-6xl">
+            <Gallery
+              images={project.images}
+              onImageClick={openImage}
+            />
+          </div>
         </section>
 
         <Lightbox
@@ -73,6 +93,16 @@ export default function KellyPage() {
         />
 
       </div>
+
+      <div className="relative z-10 top-[370px] flex w-full justify-center px-6 pb-[250px]">
+        <Link
+          href="/retratos/playa"
+          className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-6 py-3 text-sm font-semibold uppercase tracking-[2px] text-gray-300 transition hover:border-red-600 hover:text-white"
+        >
+          ← VOLVER A PLAYA
+        </Link>
+      </div>
+
     </main>
   );
 }

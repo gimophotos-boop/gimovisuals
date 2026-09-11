@@ -1,34 +1,44 @@
 "use client";
 
+import EventProjectCard from "./EventProjectCard";
 import { projects } from "../projects";
-import ProjectCard from "@/app/inmobiliarias/components/ProjectCard";
 
 const destacados = [
   {
     nombre: "Henry Méndez",
-    evento: "Summer Festival 2025",
+    location: "La Pobla de Mafumet",
     href: "/eventos/proyectos/henry-mendez",
     video: "/assets/videos/eventos/henry-mendez/video.mp4",
   },
   {
     nombre: "Marsal Ventura",
-    evento: "Techno Flamenco 2024",
+    location: "La Pobla de Mafumet",
     href: "/eventos/proyectos/marsal-ventura",
     video: "/assets/videos/eventos/marsal-ventura/video.mp4",
   },
   {
     nombre: "Alvama Ice",
-    evento: "Pobla Lledó Session 2026",
+    location: "La Pobla de Mafumet",
     href: "/eventos/proyectos/alvama-ice",
     video: "/assets/videos/eventos/alvama-ice/video.mp4",
   },
   {
     nombre: "MonDj",
-    evento: "Pobla Lledó Session 2025",
+    location: "La Pobla de Mafumet",
     href: "/eventos/proyectos/mondj",
     video: "/assets/videos/eventos/mondj/video.mp4",
   },
 ];
+
+function getImages(href: string) {
+  const slug = href.split("/").pop();
+
+  if (!slug) return [];
+
+  return Array.from({ length: 12 }, (_, index) => {
+    return `/assets/images/eventos/${slug}/${index + 1}.jpg`;
+  });
+}
 
 export default function Proyectos() {
   const eventos = projects.filter(
@@ -40,74 +50,140 @@ export default function Proyectos() {
   );
 
   return (
-    <section className="pb-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative min-h-screen overflow-hidden">
 
-        {/* ARTISTAS DESTACADOS */}
-        <div className="mb-20">
-          <h2 className="text-3xl md:text-4xl font-black mb-3">
-            Artistas destacados
-          </h2>
+      {/* FOTO DE FONDO */}
 
-          <p className="text-gray-400 mb-8">
-            Algunos de los artistas y eventos destacados que hemos cubierto.
-          </p>
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        style={{
+          backgroundImage:
+            'url("/assets/images/eventos/concurso-fuegos-artificiales-tarragona-2026/8.jpg")',
+        }}
+      />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {destacados.map((artista) => (
-              <a
-                key={artista.href}
-                href={artista.href}
-                className="group relative overflow-hidden rounded-2xl aspect-[4/5] bg-neutral-900"
-              >
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      {/* OSCURECIMIENTO */}
+
+      <div className="absolute inset-0 bg-black/25" />
+
+      {/* DEGRADADO */}
+
+      <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/15 to-black/45" />
+
+
+      {/* CONTENIDO */}
+
+      <div className="relative z-10 px-6 pb-32">
+
+        {/* ESPACIO REAL DEBAJO DEL NAVBAR */}
+
+        <div className="h-[120px]" />
+
+
+        <div className="max-w-7xl mx-auto">
+
+          {/* ARTISTAS DESTACADOS */}
+
+          <div className="mb-28">
+
+            <div className="text-center mb-14">
+
+              <p className="uppercase tracking-[6px] text-red-500 font-medium text-[17px] mb-4">
+                ARTISTAS DESTACADOS
+              </p>
+
+              <h2 className="text-[58px] leading-[1.04] font-black tracking-[-1.5px]">
+                Artistas destacados
+              </h2>
+
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+              {destacados.map((artista) => (
+
+                <a
+                  key={artista.href}
+                  href={artista.href}
+                  className="group relative overflow-hidden rounded-[28px] aspect-[4/5] bg-neutral-900"
                 >
-                  <source src={artista.video} type="video/mp4" />
-                </video>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  >
+                    <source
+                      src={artista.video}
+                      type="video/mp4"
+                    />
+                  </video>
 
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <p className="text-sm text-gray-300 mb-1">
-                    {artista.evento}
-                  </p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 
-                  <h3 className="text-2xl font-black text-white">
-                    {artista.nombre}
-                  </h3>
-                </div>
-              </a>
-            ))}
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+
+                    <h3 className="text-2xl md:text-3xl font-black text-white group-hover:text-red-500 transition-colors duration-300">
+                      {artista.nombre}
+                    </h3>
+
+                    <p className="mt-2 uppercase tracking-[3px] text-sm text-red-500 font-medium">
+                      {artista.location}
+                    </p>
+
+                  </div>
+
+                </a>
+
+              ))}
+
+            </div>
+
           </div>
-        </div>
 
-        {/* TODOS LOS EVENTOS */}
-        <div>
-          <h2 className="text-3xl md:text-4xl font-black mb-8">
-            Eventos
-          </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {eventos.map((project) => (
-              <ProjectCard
-                key={project.href}
-                title={project.title}
-                location={project.location}
-                description={project.description}
-                video={project.video}
-                href={project.href}
-              />
-            ))}
+          {/* EVENTOS */}
+
+          <div>
+
+            <div className="text-center mb-14">
+
+              <p className="uppercase tracking-[6px] text-red-500 font-medium text-[17px] mb-4">
+                PROYECTOS
+              </p>
+
+              <h2 className="text-[58px] leading-[1.04] font-black tracking-[-1.5px]">
+                Nuestros eventos
+              </h2>
+
+            </div>
+
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+              {eventos.map((project) => (
+
+                <EventProjectCard
+                  key={project.href}
+                  title={project.title}
+                  location={project.location}
+                  href={project.href}
+                  images={getImages(project.href)}
+                />
+
+              ))}
+
+            </div>
+
           </div>
+
         </div>
 
       </div>
+
     </section>
   );
 }

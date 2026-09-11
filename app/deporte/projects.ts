@@ -1,5 +1,14 @@
 export const projects = [
   {
+    title: "Vuelta a España 2026",
+    location: "Sur de Tarragona",
+    description:
+      "Cobertura fotográfica de la Vuelta a España 2026 a su paso por Xerta, Benifallet y Rasquera.",
+    video: "/assets/videos/deporte/vuelta-a-espana-2026/video.mp4",
+    href: "/deporte/proyectos/vuelta-a-espana-2026",
+  },
+
+  {
     title: "Festa al Cel 2025",
     location: "Salou",
     description:

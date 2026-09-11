@@ -6,11 +6,9 @@ import Stats from "./components/Stats";
 import Divider from "./components/Divider";
 import WhyUs from "./components/WhyUs";
 import Services from "./components/Services";
-import Videos from "./components/Videos";
 import Clients from "./components/Clients";
 import About from "./components/About";
 import Testimonials from "./components/Testimonials";
-import CTA from "./components/CTA";
 import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -29,23 +27,11 @@ export default function Home() {
 
         <Hero />
 
-        <Stats />
-
-        <Divider />
-
-        <WhyUs />
-
-        <Divider />
-
         <Services />
 
         <Divider />
 
-        <Videos />
-
-        <Divider />
-
-        <Clients />
+        <Stats />
 
         <Divider />
 
@@ -55,9 +41,15 @@ export default function Home() {
 
         <Testimonials />
 
-        <CTA />
+        <Divider />
 
         <FAQ />
+
+        <Divider />
+
+        <WhyUs />
+
+        <Divider />
 
         <Contact />
 

@@ -8,10 +8,6 @@ export default function Proyectos() {
     <section className="px-6 pb-28">
       <div className="max-w-7xl mx-auto">
 
-        <h2 className="text-4xl md:text-5xl font-black mb-14">
-          Proyectos
-        </h2>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <ProjectCard
